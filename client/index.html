@@ -11,15 +11,40 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to HabitHelper</h1>
-        <nav>
+        <div class="brand">
+            <h1>Welcome to <span class="titlecolor">HabitHelper.</span></h1>
+        </div>
 
+        
+        <nav>
         </nav>
-        <button id="loginButton">Login</button>
-        <button id="registerButton">Register</button>
+        
     </header>
-    <main>
-        <p>HabitHelper</p>
-    </main>
+    <body>
+        
+        <div class="container">
+            <h2>Login to get Started</h2>
+            <form name="login" method="post">
+                <div class="account">
+                    <input type="text" name="username" id="username" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="account">
+                    <input type="text" name="password" id="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>    
+                <div class="submit">   
+                    <button id="loginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspLogin</button>
+                    <button id="registerButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
+                </div>
+            </form>
+        </div>
+
+        
+
+    </body>
+        
 </body>
 </html>

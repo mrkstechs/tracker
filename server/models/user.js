@@ -1,10 +1,11 @@
-const db = require('../db_config/config');
+const {db} = require('../db/init');
 
-class User {
+module.exports = class User {
     constructor(data){
+        this.id = data.id
         this.email = data.email
-        this.firstName = data.firstName
-        this.lastName = data.lastName
+        this.firstName = data.firstname
+        this.lastName = data.lastname
         this.username = data.username
         this.password = data.password
     }
@@ -13,7 +14,7 @@ class User {
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO users (email, firstName, lastName, username, password)
-                                                VALUES (${email}, ${firstName}, ${lastName}, ${username}, ${password}) RETURNING *;`);
+                                                VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[email, firstName, lastName, username, password]);
                 let user = new User(result.rows[0]);
                 res(user)
             } catch (err) {
@@ -22,10 +23,23 @@ class User {
         })
     }
 
+    static get all(){
+        return new Promise (async (resolve, reject) => {
+            try {
+                let result = await db.query('SELECT * FROM users');
+                let users = result.rows.map(u => new User(u));
+                resolve (users);
+            } catch (err) {
+                reject('Users not found');
+            }
+        });
+    };
+
+
     static findByUsername (username) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query(`SELECT * FROM users WHERE username = ${username};`)
+                let result = await db.query('SELECT * FROM users WHERE username = $1;', [username])
                 let user = new User(result.rows[0])
                 res(user)
             } catch (err) {
@@ -33,4 +47,6 @@ class User {
             }
         })
     }
+
+    
 }
