@@ -3,15 +3,15 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-        const user = await User.findByEmail(req.body.email)
+        const user = await User.findByUsername(req.body.username)
         console.log(user)
-        if(!user){ throw new Error('No user with this email') }
-        const authed = await bcrypt.compare(req.body.password === user.passwordDigest);
+        if(!user){ throw new Error('No user with this username') }
+        const authed = await bcrypt.compare(req.body.password === user.password);
         if (!!authed){
             const payload = {
                 user: user.username
             }
-            const secret = "SUPERSECRETSTRING" // In practice load this from .env file
+            // const secret =  Load this from .env file
             const options = {
                 expiresIn: 60
             }            
