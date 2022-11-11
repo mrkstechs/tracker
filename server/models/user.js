@@ -1,10 +1,10 @@
 const db = require('../db/db_config');
 
-class User {
+module.exports = class User {
     constructor(data){
         this.email = data.email
-        this.firstName = data.firstName
-        this.lastName = data.lastName
+        this.firstName = data.firstname
+        this.lastName = data.lastname
         this.username = data.username
         this.password = data.password
     }
