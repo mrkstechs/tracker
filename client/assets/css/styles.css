@@ -57,6 +57,8 @@ form .account {
     width: 100%;
     padding: 0 5px;
     height: 40px;
+    font-family: monospace;
+    font-weight: 600;
     font-size: 16px;
     border: none;
     background: none;
