@@ -1,4 +1,4 @@
-const db = require('../db_config/config');
+const db = require('../db/db_config');
 
 class User {
     constructor(data){
@@ -22,6 +22,21 @@ class User {
         })
     }
 
+    static get all(){
+        return new Promise (async (resolve, reject) => {
+            try {
+                let result = await db.query('SELECT * FROM users');
+                let users = result.rows.map(u => new User(u));
+                console.log(result)
+                console.log(users)
+                resolve (users);
+            } catch (err) {
+                reject('Users not found');
+            }
+        });
+    };
+
+
     static findByUsername (username) {
         return new Promise (async (res, rej) => {
             try {
@@ -33,4 +48,6 @@ class User {
             }
         })
     }
+
+    
 }

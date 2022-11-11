@@ -35,4 +35,14 @@ async function register () {
     }
 };
 
-module.exports = { login, register}
+async function index (req, res) {
+    try {
+        const users = await User.all;
+        console.log(users)
+        res.status(200).json(users)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = { login, register, index}
