@@ -1,4 +1,4 @@
-const pageMain = document.querySelector('body main')
+const pageHeader = document.querySelector('body header')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
 
@@ -16,7 +16,7 @@ function showLogin () {
                     </form>
                 <button id="hideForms">x</button>
             </section>`
-    pageMain.insertAdjacentHTML('afterbegin', markup);
+    pageHeader.insertAdjacentHTML('beforeend', markup);
     
     const loginForm = document.querySelector('#loginSection form')
     loginForm.addEventListener('submit', requestLogin)
@@ -37,7 +37,7 @@ function showRegister () {
                     </form>
                 <button id="hideForms">x</button>
             </section>`
-    pageMain.insertAdjacentHTML('afterbegin', markup);
+    pageHeader.insertAdjacentHTML('beforeend', markup);
     
     const registerForm = document.querySelector('#registerSection form')
     registerForm.addEventListener('submit', requestRegistration)
@@ -47,8 +47,8 @@ function showRegister () {
 
 
 function clearForms () {
-    if (pageMain.firstElementChild.id == "loginSection" || pageMain.firstElementChild.id == "registerSection") {
-        pageMain.firstElementChild.remove()
+    if (pageHeader.lastElementChild.id == "loginSection" || pageHeader.lastElementChild.id == "registerSection") {
+        pageHeader.lastElementChild.remove()
     }
 };
 
