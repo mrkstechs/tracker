@@ -10,8 +10,8 @@ function showLogin () {
     clearForms();
     markup = `<section id="loginSection">
                     <form action="">
-                        <input type="text" id="username" name="username" placeholder="username" required>
-                        <input type="text" id="password" name="password" placeholder="password" required>
+                        <input type="text" id="username" name="username" placeholder="Username..." required>
+                        <input type="text" id="password" name="password" placeholder="Password..." required>
                         <input type="submit" value="login">
                     </form>
                 <button id="hideForms">x</button>
