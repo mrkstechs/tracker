@@ -58,7 +58,7 @@ function showRegister () {
                     <label>Last Name</label>
                 </div>
                 <div class="submit">   
-                    <button id="backToLoginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspLogin</button>
+                    <button id="backToLoginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspBack to Login</button>
                     <button id="submitRegisterButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
                 </div>`
     form.insertAdjacentHTML('afterbegin', markup);
