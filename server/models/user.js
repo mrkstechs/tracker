@@ -2,6 +2,7 @@ const db = require('../db/db_config');
 
 module.exports = class User {
     constructor(data){
+        this.id = data.id
         this.email = data.email
         this.firstName = data.firstname
         this.lastName = data.lastname
@@ -27,8 +28,6 @@ module.exports = class User {
             try {
                 let result = await db.query('SELECT * FROM users');
                 let users = result.rows.map(u => new User(u));
-                console.log(result)
-                console.log(users)
                 resolve (users);
             } catch (err) {
                 reject('Users not found');
