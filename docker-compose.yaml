@@ -1,0 +1,37 @@
+version: '3'
+services:
+  # server:
+  #   container_name: tracker_server
+  #   image: node:latest
+  #   working_dir: /app
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - PGUSER=tracker
+  #     - PGPASSWORD=toptracker
+  #     - PGDATABASE=tracker_db
+  #     - PGHOST=db
+  #     - PGPORT=5432
+  #   volumes:
+  #     - type: bind
+  #       source: ./server
+  #       target: /app
+  #   depends_on:
+  #     - db
+  #   command: bash -c "npm i && npm run dev"
+
+  db:
+    container_name: tracker_db
+    image: postgres:12.4
+    environment:
+      - POSTGRES_USER=tracker
+      - POSTGRES_PASSWORD=toptracker
+      - POSTGRES_DB=tracker_db
+    volumes:
+      - "./server/db/migrations:/docker-entrypoint-initdb.d/:ro"
+      - "dbdata:/var/lib/postgresql/data"
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: tracker

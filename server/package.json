@@ -1,0 +1,20 @@
+{
+  "name": "tracker",
+  "version": "1.0.0",
+  "description": "a simple habit tracker app",
+  "main": "server.js",
+  "scripts": {
+    "test": "--watchAll",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrkstechs/tracker.git"
+  },
+  "author": "Kelechi Okoli, Mason Dietrich, Adedayo Titiloye & Cameron Findlay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrkstechs/tracker/issues"
+  },
+  "homepage": "https://github.com/mrkstechs/tracker#readme"
+}
