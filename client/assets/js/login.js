@@ -14,7 +14,7 @@ function showLogin () {
                     <label>Username</label>
                 </div>
                 <div class="account">
-                    <input type="text" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>    
@@ -38,7 +38,7 @@ function showRegister () {
                     <label>Username</label>
                 </div>
                 <div class="account">
-                    <input type="text" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>    
