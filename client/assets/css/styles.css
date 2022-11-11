@@ -98,29 +98,41 @@ h2 {
 }
 
 div.submit {
+    display: flex;
+    justify-content: space-around;
     text-align: center;
-    margin-bottom: 30px;
+    margin: 30px auto;
+    height: 20%;
 }
 
-#submit {
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Work Sans';
     font-weight: bold;
     border-radius: 15px;
     border: none;
     background-color: #57BD54;
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 125px;
+    padding: 2px 5px;
     font-size: 16px;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
 }
 
-#submit:hover {
+button:hover {
     background-color: #083AA9;
     transition: 0.5s;
     color: #CFF5E7;
     cursor: pointer;
 
+}
+
+.bi {
+    font-size: 1.5em;
+    font-weight: bolder;
 }
 
