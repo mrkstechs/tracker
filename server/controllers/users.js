@@ -1,14 +1,18 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 const User = require('../models/user');
 
 async function login (req, res) {
     try {
         const user = await User.findByUsername(req.body.username)
-        console.log(user)
+
         if(!user){throw new Error('No user with this username')}
         const authed = await bcrypt.compare(req.body.password === user.password);
+        console.log(user)
         if (!!authed){
             const payload = {
-                user: user.username
+                user: user.username,
+                firstName: user.firstName
             }
             // const secret =  Load this from .env file
             const options = {
@@ -21,17 +25,19 @@ async function login (req, res) {
             throw new Error('User could not be authenticated')  
         }
     } catch (err) {
-        res.status(401).json({ err });
+        res.status(401).send({ err });
     }
 };
 
 async function register (req, res) {
     try {
         try {
-            const user = await User.findByUsername(req.body.username);
+            const user = await User.findByUsername(req.body.username);      // supposed to check if username is already in use but not done
             throw new Error('Username is already in use');
         } catch (err){
-            await User.create(req.body)
+            const salt = await bcrypt.genSalt(12);
+            const hashed = await bcrypt.hash(req.body.password, salt);
+            await User.create({...req.body, password: hashed})
             res.status(201).json({msg: 'User created'})
         }
     } catch (err) {
