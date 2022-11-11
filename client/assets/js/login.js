@@ -10,10 +10,10 @@ function showLogin () {
     clearForms();
     markup = `<section id="loginSection">
                     <form action="">
-                    <input type="text" id="username" name="username" placeholder="username" required>
-                    <input type="text" id="password" name="password" placeholder="password" required>
-                    <input type="submit" value="login">
-                </form>
+                        <input type="text" id="username" name="username" placeholder="username" required>
+                        <input type="text" id="password" name="password" placeholder="password" required>
+                        <input type="submit" value="login">
+                    </form>
                 <button id="hideForms">x</button>
             </section>`
     pageMain.insertAdjacentHTML('afterbegin', markup);
@@ -28,11 +28,13 @@ function showRegister () {
     clearForms();
     markup = `<section id="registerSection">
                     <form action="">
-                    <input type="text" id="username" name="username" placeholder="username" required>
-                    <input type="text" id="email" name="email" placeholder="email" required>
-                    <input type="text" id="password" name="password" placeholder="password" required>
-                    <input type="submit" value="register">
-                </form>
+                        <input type="text" id="email" name="email" placeholder="E-mail..." required>
+                        <input type="text" id="firstName" name="firstName" placeholder="First name..." required>
+                        <input type="text" id="lastName" name="lastName" placeholder="Last name..." required>
+                        <input type="text" id="username" name="username" placeholder="Username..." required>
+                        <input type="text" id="password" name="password" placeholder="Password..." required>
+                        <input type="submit" value="register">
+                    </form>
                 <button id="hideForms">x</button>
             </section>`
     pageMain.insertAdjacentHTML('afterbegin', markup);
