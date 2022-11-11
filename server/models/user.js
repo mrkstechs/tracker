@@ -14,7 +14,7 @@ module.exports = class User {
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO users (email, firstName, lastName, username, password)
-                                                VALUES (${email}, ${firstName}, ${lastName}, ${username}, ${password}) RETURNING *;`);
+                                                VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[email, firstName, lastName, username, password]);
                 let user = new User(result.rows[0]);
                 res(user)
             } catch (err) {
@@ -39,7 +39,7 @@ module.exports = class User {
     static findByUsername (username) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query(`SELECT * FROM users WHERE username = ${username};`)
+                let result = await db.query('SELECT * FROM users WHERE username = $1;', [username])
                 let user = new User(result.rows[0])
                 res(user)
             } catch (err) {
