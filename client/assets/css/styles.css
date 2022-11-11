@@ -19,6 +19,12 @@ div.brand {
     color: #CFF5E7;
 }
 
+h3 {
+    text-align: center;
+    color:#CFF5E7;
+    letter-spacing: 20px;
+}
+
 .container {
     position: absolute;
     top: 50%;
