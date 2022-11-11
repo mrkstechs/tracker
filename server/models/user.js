@@ -1,4 +1,4 @@
-const db = require('../db/db_config');
+const {db} = require('../db/init');
 
 module.exports = class User {
     constructor(data){

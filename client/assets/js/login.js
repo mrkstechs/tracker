@@ -1,4 +1,4 @@
-const pageHeader = document.querySelector('body header')
+const form = document.querySelector('form')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
 
@@ -7,59 +7,85 @@ registerButton.addEventListener('click', showRegister)
 
 
 function showLogin () {
-    clearForms();
-    markup = `<section id="loginSection">
-                    <form action="">
-                        <input type="text" id="username" name="username" placeholder="Username..." required>
-                        <input type="text" id="password" name="password" placeholder="Password..." required>
-                        <input type="submit" value="login">
-                    </form>
-                <button id="hideForms">x</button>
-            </section>`
-    pageHeader.insertAdjacentHTML('beforeend', markup);
-    
-    const loginForm = document.querySelector('#loginSection form')
-    loginForm.addEventListener('submit', requestLogin)
-    const closeButton = document.querySelector('#hideForms')
-    closeButton.addEventListener('click', clearForms)
+    form.innerHTML = "";
+    markup = `<div class="account">
+                    <input type="text" name="username" id="username" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="account">
+                    <input type="text" name="password" id="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>    
+                <div class="submit">   
+                    <button id="loginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspLogin</button>
+                    <button id="registerButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
+                </div>`
+    form.insertAdjacentHTML('beforeend', markup);
+
+    const registerButton = document.querySelector('#registerButton')
+    registerButton.addEventListener('click', showRegister)
+    const loginButton = document.querySelector('#loginButton')
+    loginButton.addEventListener('click', requestLogin)
 }
 
 function showRegister () {
-    clearForms();
-    markup = `<section id="registerSection">
-                    <form action="">
-                        <input type="text" id="email" name="email" placeholder="E-mail..." required>
-                        <input type="text" id="firstName" name="firstName" placeholder="First name..." required>
-                        <input type="text" id="lastName" name="lastName" placeholder="Last name..." required>
-                        <input type="text" id="username" name="username" placeholder="Username..." required>
-                        <input type="text" id="password" name="password" placeholder="Password..." required>
-                        <input type="submit" value="register">
-                    </form>
-                <button id="hideForms">x</button>
-            </section>`
-    pageHeader.insertAdjacentHTML('beforeend', markup);
+    form.innerHTML = ""
+    markup = `<div class="account">
+                    <input type="text" name="username" id="username" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="account">
+                    <input type="text" name="password" id="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>    
+                <div class="account">
+                    <input type="text" name="email" id="email" required>
+                    <span></span>
+                    <label>E-mail</label>
+                </div>
+                <div class="account">
+                    <input type="text" name="firstName" id="firstName" required>
+                    <span></span>
+                    <label>First Name</label>
+                </div>
+                <div class="account">
+                    <input type="text" name="lastName" id="lastName" required>
+                    <span></span>
+                    <label>Last Name</label>
+                </div>
+                <div class="submit">   
+                    <button id="backToLoginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspBack to Login</button>
+                    <button id="submitRegisterButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
+                </div>`
+    form.insertAdjacentHTML('afterbegin', markup);
     
-    const registerForm = document.querySelector('#registerSection form')
-    registerForm.addEventListener('submit', requestRegistration)
-    const closeButton = document.querySelector('#hideForms')
-    closeButton.addEventListener('click', clearForms)
+    const backToLoginButton = document.querySelector('#backToLoginButton')
+    backToLoginButton.addEventListener('click', showLogin)
+    const submitRegisterButton = document.querySelector('#submitRegisterButton')
+    submitRegisterButton.addEventListener('click', requestRegistration)
 }
 
 
 function clearForms () {
-    if (pageHeader.lastElementChild.id == "loginSection" || pageHeader.lastElementChild.id == "registerSection") {
-        pageHeader.lastElementChild.remove()
-    }
+    // form.childNodes.forEach(child => {
+    //     console.log(child)
+    //     if (child == "#text") {child.remove()}
+    //     else if (child.classList.contains("account")) {child.remove()}})
 };
 
 
 async function requestLogin(e){
     e.preventDefault();
+    const form = document.querySelector('form')
     try {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+            body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
         const r = await fetch(`http://localhost:3000/login`, options)
         const data = await r.json()
@@ -72,11 +98,12 @@ async function requestLogin(e){
 
 async function requestRegistration(e) {
     e.preventDefault();
+    const form = document.querySelector('form')
     try {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+            body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
         const r = await fetch(`http://localhost:3000/register`, options)
         const data = await r.json()
