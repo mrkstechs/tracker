@@ -2,7 +2,7 @@ const form = document.querySelector('form')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
 
-loginButton.addEventListener('click', showLogin)
+loginButton.addEventListener('click', requestLogin)
 registerButton.addEventListener('click', showRegister)
 
 
@@ -118,5 +118,5 @@ function login(data){
     localStorage.setItem('token', data.token);
     const message = document.createElement('p');
     message.textContent = "Succesful login";
-    loginForm.append(message);
+    form.append(message);
 }

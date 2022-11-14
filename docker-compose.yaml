@@ -12,6 +12,7 @@ services:
       - PGDATABASE=tracker_db
       - PGHOST=db
       - PGPORT=5432
+      - SECRET_PASSWORD=${PASS}
     volumes:
       - type: bind
         source: ./server

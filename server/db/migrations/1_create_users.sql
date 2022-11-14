@@ -6,5 +6,5 @@ CREATE TABLE users (
     firstname VARCHAR(63) NOT NULL,
     lastname VARCHAR(63) NOT NULL,
     username VARCHAR(63) NOT NULL,
-    password VARCHAR(127) NOT NULL
-)
+    password char(60) NOT NULL
+);
