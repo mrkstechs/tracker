@@ -7,6 +7,7 @@
 - `cd` into `tracker`
 - `cd` into `server`
 - `run npm i` to install dependencies
+- Add .env file in root directory with `PASS` variable equal to a secret key
 
 ### Usage
 - have `docker desktop` running on your machine
