@@ -24,13 +24,25 @@ describe('Users controller', () => {
 
     describe('login', () => {
         test('', async () => {
-
+            let testUser = {username: "testusername", password: "testpass"}
+            jest.spyOn(User, 'findByUsername')
+                .mockResolvedValue(User.findByUsername(testUser))
+            const mockReq = {body: testUser}
+            await usersController.login(mockReq, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(200)
+            expect(mockJson).toHaveBeenCalledWith({success: true , token: ""})
         })
     })
 
     describe('register', () => {
         test('new user created with a 201 status code', async () => {
-            let newUser = {id: 1, username: "testusername", }
+            let newUser = {id: 1, username: "testusername", firstName: "Test", lastName: "Tester", password: "testpass"}
+            jest.spyOn(User, 'create')
+                .mockResolvedValue(new User(newUser))
+            const mockReq = {body: newUser}
+            await usersController.register(mockReq, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(201)
+            expect(mockJson).toHaveBeenCalledWith({msg: 'User created'})
         })
     })
 
