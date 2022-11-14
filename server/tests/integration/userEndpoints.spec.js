@@ -13,5 +13,11 @@ describe('User endpoints', () => {
         await api.close()
     })
 
-    
+    it('should retrieve all users', async () => {
+        const res = await request(api).get('/users')
+        expect(res.statusCode).toEqual(200)
+        expect(res.body[0].username).toEqual('test1')
+        expect(res.body[1].username).toEqual('test2')
+    });
+
 })
