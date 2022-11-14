@@ -9,11 +9,11 @@ module.exports = class Tracker {
         this.userId = data.userId
     }
 
-    static create ({ id, habitId, dailyValue, date, userId}){
+    static create ({ habitId, dailyValue, date, userId}){
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO tracker (id, havitId, dailyValue, date, userId)
-                                                VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[id, habitId, dailyValue, date, userId]);
+                                                VALUES ($1, $2, $3, $4) RETURNING *;`,[habitId, dailyValue, date, userId]);
                 let tracker = new Tracker(result.rows[0]);
                 res(user)
             } catch (err) {

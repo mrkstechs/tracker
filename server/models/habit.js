@@ -8,13 +8,13 @@ module.exports = class Habit {
         this.recommended_weekly_goal = data.recommended_weekly_goal
     }
 
-    static create ({id, habit, recommended_daily_goal, recommended_weekly_goal}){
+    static create ({habit, recommended_daily_goal, recommended_weekly_goal}){
         return new Promise(async (res, rej) => {
             try {
-                let result = await db.query(`INSERT INTO habits (id, habit, recommended_daily_goal, recommended_weekly_goal)
-                                                VALUES ($1, $2, $3, $4) RETURNING *;`,[id, habit, recommended_daily_goal, recommended_weekly_goal]);
-                let habit = new Habit(result.rows[0]);
-                res(habit)
+                let result = await db.query(`INSERT INTO habits (habit, recommended_daily_goal, recommended_weekly_goal)
+                                                VALUES ($1, $2, $3) RETURNING *;`,[habit, recommended_daily_goal, recommended_weekly_goal]);
+                let newHabit = new Habit(result.rows[0]);
+                res(newHabit)
             } catch (err) {
                 rej(`Error creating habit: ${err}`)
             }
