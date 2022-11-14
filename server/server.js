@@ -4,7 +4,7 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const apiRoutes =-  require('./routes/api')
+const apiRoutes =  require('./routes/api')
 
 server.use('/api', apiRoutes)
 

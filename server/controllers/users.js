@@ -41,13 +41,19 @@ async function createToken(userData){
 async function register (req, res) {
     try {
         const salt = await bcrypt.genSalt(12);
-        const hashed = await bcrypt.hash(req.body.password, salt);
-        await User.create({...req.body, password: hashed})
-        res.status(201).json({msg: 'User created'})
-    } catch (err) {
-        res.status(500).json({ err });
+        const hashed = await bcrypt.hash(req.body.password, salt)
+        const {email, username} = req.body
+        const userExist = await User.checkIfExists(email, username)
+        if(userExist){
+            res.status(302).json({user: userExist})
+        } else {
+            await User.create({...req.body, password: hashed})
+            res.status(201).json({msg: 'User created'})
+        }
+    } catch (error) {
+        res.status(500).json({ error })
     }
-};
+}
 
 async function index (req, res) {
     try {
