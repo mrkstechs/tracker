@@ -4,12 +4,13 @@ const router = express.Router()
 
 const userController = require('../controllers/users')
 const habitController = require('../controllers/habits')
+const trackerController = require('../controllers/trackers')
 
 router.post('/login', userController.login)
 router.post('/register', userController.register)
 
-router.post('/habits', habitController.logData)
-
 router.get('/users', userController.index)
+router.post('/habits', habitController.index)
+router.post('/trackers', trackerController.index)
 
 module.exports = router

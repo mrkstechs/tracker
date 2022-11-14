@@ -20,4 +20,16 @@ module.exports = class Habit {
             }
         })
     }
+
+    static get all(){
+        return new Promise (async (resolve, reject) => {
+            try {
+                let result = await db.query('SELECT * FROM habits');
+                let habits = result.rows.map(u => new Habit(u));
+                resolve (habits);
+            } catch (err) {
+                reject('Habits not found');
+            }
+        });
+    };
 }

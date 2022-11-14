@@ -12,7 +12,7 @@ module.exports = class Tracker {
     static create ({ id, havitId, dailyValue, date, userId}){
         return new Promise(async (res, rej) => {
             try {
-                let result = await db.query(`INSERT INTO habits (id, havitId, dailyValue, date, userId)
+                let result = await db.query(`INSERT INTO tracker (id, havitId, dailyValue, date, userId)
                                                 VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[id, havitId, dailyValue, date, userId]);
                 let tracker = new Tracker(result.rows[0]);
                 res(user)
@@ -21,4 +21,16 @@ module.exports = class Tracker {
             }
         })
     }
+
+    static get all(){
+        return new Promise (async (resolve, reject) => {
+            try {
+                let result = await db.query('SELECT * FROM tracker');
+                let trackers = result.rows.map(d => new Tracker(d));
+                resolve (trackers);
+            } catch (err) {
+                reject('Trackers not found');
+            }
+        });
+    };
 };
