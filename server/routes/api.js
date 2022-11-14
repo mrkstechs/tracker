@@ -8,6 +8,7 @@ const trackerController = require('../controllers/trackers')
 
 router.post('/login', userController.login)
 router.post('/register', userController.register)
+router.post('/habits', habitController.newHabit)
 
 router.get('/users', userController.index)
 router.get('/habits', habitController.index)

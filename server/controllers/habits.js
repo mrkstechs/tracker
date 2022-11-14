@@ -9,5 +9,13 @@ async function index (req, res) {
     }
 }
 
+async function newHabit (req, res) {
+    try {
+        const newHabit = await Habit.create(req.body)
+        res.status(200).json(newHabit)
+    } catch {
+        res.status(500).json({err})
+    }
+}
 
-module.exports = {index}
+module.exports = {index, newHabit}
