@@ -9,4 +9,13 @@ async function index (req, res) {
     }
 }
 
-module.exports = {index}
+async function newTracker (req, res) {
+    try {
+        const newTracker = await Tracker.create(req.body)
+        res.status(200).json(newTracker)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = {index, newTracker}
