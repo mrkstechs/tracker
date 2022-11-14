@@ -5,7 +5,7 @@ const User = require('../models/user');
 async function login (req, res) {
     try {
         const user = await User.findByUsername(req.body.username)
-
+        console.log(user)
         if(!user){throw new Error('No user with this username')}
         const authed = await bcrypt.compare(req.body.password, user.password);
         console.log(user)

@@ -39,8 +39,11 @@ module.exports = class User {
     static findByUsername (username) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query('SELECT id FROM users WHERE username = $1;', [username])
+                let result = await db.query('SELECT * FROM users WHERE username = $1;', [username])
                 let user = new User(result.rows[0])
+                console.log(username)
+                console.log(result)
+                
                 res(user)
             } catch (err) {
                 rej (`User cannot be found`)
