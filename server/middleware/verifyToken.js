@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 function verifyToken (req, res, next) {
-    const header = req.headers["authorization"];
+    const token = req.headers["authorization"];
     if (header) {
         jwt.verify(token, process.env["SECRET_PASSWORD"], (err, decoded) => {
             if (err){
@@ -16,3 +16,5 @@ function verifyToken (req, res, next) {
                             message: "This route requires authorization"})
     }
 }
+
+module.exports = verifyToken
