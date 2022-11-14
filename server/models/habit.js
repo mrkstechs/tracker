@@ -1,6 +1,6 @@
 const {db} = require('../db/init');
 
-module.exports = class habit {
+module.exports = class Habit {
     constructor(data){
         this.id = data.id
         this.habit = data.habit
@@ -12,8 +12,8 @@ module.exports = class habit {
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO habits (id, habit, recommended_daily_goal, recommended_weekly_goal)
-                                                VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[id, habit, recommended_daily_goal, recommended_weekly_goal]);
-                let habit = new User(result.rows[0]);
+                                                VALUES ($1, $2, $3, $4) RETURNING *;`,[id, habit, recommended_daily_goal, recommended_weekly_goal]);
+                let habit = new Habit(result.rows[0]);
                 res(habit)
             } catch (err) {
                 rej(`Error creating habit: ${err}`)
