@@ -118,5 +118,5 @@ function login(data){
     localStorage.setItem('token', data.token);
     const message = document.createElement('p');
     message.textContent = "Succesful login";
-    loginForm.append(message);
+    form.append(message);
 }

@@ -11,24 +11,34 @@ async function login (req, res) {
         console.log(user)
         console.log(authed)
         if (!!authed){
-            const payload = {
-                user: user.username,
-                firstName: user.firstName
-            }
-            // const secret =  Load this from .env file
-            const options = {
-                expiresIn: 60
-            }            
-
-            const token = await jwt.sign(payload, secret, options);
-            res.status(200).json({ token: token })
+            res.status(200).json({
+                succes: true, 
+                token: await createToken(user)
+            })
         } else {
             throw new Error('User could not be authenticated')  
         }
     } catch (err) {
-        res.status(401).send({ err });
+        res.status(401).json({ err });
     }
 };
+
+async function createToken(userData){
+    const payload = {
+        user: userData.username,
+        firstName: userData.firstName
+    }
+    const secret = process.env["SECRET_PASSWORD"];
+    const options = {
+        expiresIn: 60 * 60
+    }            
+
+    const token = await jwt.sign(payload, secret, options);
+    console.log(token)
+    return token;
+    
+
+}
 
 async function register (req, res) {
     try {
