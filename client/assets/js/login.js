@@ -2,7 +2,7 @@ const form = document.querySelector('form')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
 
-loginButton.addEventListener('click', showLogin)
+loginButton.addEventListener('click', requestLogin)
 registerButton.addEventListener('click', showRegister)
 
 

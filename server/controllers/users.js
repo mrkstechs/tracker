@@ -7,8 +7,9 @@ async function login (req, res) {
         const user = await User.findByUsername(req.body.username)
 
         if(!user){throw new Error('No user with this username')}
-        const authed = await bcrypt.compare(req.body.password === user.password);
+        const authed = await bcrypt.compare(req.body.password, user.password);
         console.log(user)
+        console.log(authed)
         if (!!authed){
             const payload = {
                 user: user.username,
@@ -31,15 +32,10 @@ async function login (req, res) {
 
 async function register (req, res) {
     try {
-        try {
-            const user = await User.findByUsername(req.body.username);      // supposed to check if username is already in use but not done
-            throw new Error('Username is already in use');
-        } catch (err){
-            const salt = await bcrypt.genSalt(12);
-            const hashed = await bcrypt.hash(req.body.password, salt);
-            await User.create({...req.body, password: hashed})
-            res.status(201).json({msg: 'User created'})
-        }
+        const salt = await bcrypt.genSalt(12);
+        const hashed = await bcrypt.hash(req.body.password, salt);
+        await User.create({...req.body, password: hashed})
+        res.status(201).json({msg: 'User created'})
     } catch (err) {
         res.status(500).json({ err });
     }
