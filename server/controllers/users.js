@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/User');
 
 async function login (req, res) {
     try {
@@ -27,17 +27,18 @@ async function login (req, res) {
 
 async function register (req, res) {
     try {
-        try {
-            const user = await User.findByUsername(req.body.username);
-            throw new Error('Username is already in use');
-        } catch (err){
+        const {email, username} = req.body
+        const userExist = await User.checkIfExists(email, username)
+        if(userExist){
+            res.status(302).json({user: userExist})
+        } else {
             await User.create(req.body)
             res.status(201).json({msg: 'User created'})
         }
-    } catch (err) {
-        res.status(500).json({ err });
+    } catch (error) {
+        res.status(500).json({ error })
     }
-};
+}
 
 async function index (req, res) {
     try {
