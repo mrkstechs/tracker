@@ -5,12 +5,9 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const userController = require('./controllers/users')
+const apiRoutes =-  require('./routes/api')
 
-server.post('/login', userController.login);
-server.post('/register', userController.register);
-
-server.get('/users', userController.index)
+server.use('/api', apiRoutes)
 
 server.get('/', (req, res) => res.send('Accessing HabitHelper backend'));
 

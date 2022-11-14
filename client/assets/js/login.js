@@ -87,7 +87,7 @@ async function requestLogin(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/login`, options)
+        const r = await fetch(`http://localhost:3000/api/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);
@@ -105,7 +105,7 @@ async function requestRegistration(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/register`, options)
+        const r = await fetch(`http://localhost:3000/api/register`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         requestLogin(e);
