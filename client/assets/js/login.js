@@ -14,20 +14,21 @@ function showLogin () {
                     <label>Username</label>
                 </div>
                 <div class="account">
-                    <input type="text" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>    
                 <div class="submit">   
-                    <button id="loginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspLogin</button>
+                    <label for="loginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspLogin</label>   
+                    <input type="submit" id="loginButton" value="Login" hidden>
                     <button id="registerButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
                 </div>`
     form.insertAdjacentHTML('beforeend', markup);
 
-    const registerButton = document.querySelector('#registerButton')
-    registerButton.addEventListener('click', showRegister)
+    const registerButton = document.querySelector('#submitRegisterButton')
+    registerButton.addEventListener('submit', showRegister)
     const loginButton = document.querySelector('#loginButton')
-    loginButton.addEventListener('click', requestLogin)
+    loginButton.addEventListener('submit', requestLogin)
 }
 
 function showRegister () {
@@ -38,7 +39,7 @@ function showRegister () {
                     <label>Username</label>
                 </div>
                 <div class="account">
-                    <input type="text" name="password" id="password" required>
+                    <input type="password" name="password" id="password" required>
                     <span></span>
                     <label>Password</label>
                 </div>    
@@ -58,15 +59,16 @@ function showRegister () {
                     <label>Last Name</label>
                 </div>
                 <div class="submit">   
-                    <button id="backToLoginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspBack to Login</button>
-                    <button id="submitRegisterButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</button>
+                    <button id="backToLoginButton"><i class="bi bi-box-arrow-in-right"></i>&nbspTo Login</button>
+                    <label for="submitRegisterButton"><i class="bi bi-plus-circle"></i></i>&nbspRegister</label>   
+                    <input type="submit" id="submitRegisterButton" value="Login" hidden>
                 </div>`
     form.insertAdjacentHTML('afterbegin', markup);
     
     const backToLoginButton = document.querySelector('#backToLoginButton')
     backToLoginButton.addEventListener('click', showLogin)
     const submitRegisterButton = document.querySelector('#submitRegisterButton')
-    submitRegisterButton.addEventListener('click', requestRegistration)
+    submitRegisterButton.addEventListener('submit', requestRegistration)
 }
 
 

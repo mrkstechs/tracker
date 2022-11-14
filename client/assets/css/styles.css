@@ -113,7 +113,7 @@ div.submit {
     height: 20%;
 }
 
-button {
+.submit label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,6 +131,32 @@ button {
     transition: 0.5s;
 }
 
+.submit label:hover {
+    background-color: #083AA9;
+    transition: 0.5s;
+    color: #CFF5E7;
+    cursor: pointer;
+
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Work Sans';
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    background-color: #57BD54;
+    height: 44px;
+    width: 135px;
+    padding: 2px 5px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.5s;
+}
+
 button:hover {
     background-color: #083AA9;
     transition: 0.5s;
@@ -138,6 +164,7 @@ button:hover {
     cursor: pointer;
 
 }
+
 
 .bi {
     font-size: 1.5em;
