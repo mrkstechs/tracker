@@ -36,8 +36,6 @@ async function createToken(userData){
     const token = await jwt.sign(payload, secret, options);
     console.log(token)
     return token;
-    
-
 }
 
 async function register (req, res) {
