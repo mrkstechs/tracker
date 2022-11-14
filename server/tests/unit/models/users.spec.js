@@ -2,7 +2,7 @@ const User = require('../../../models/user');
 const pg = require('pg');
 jest.mock('pg');
 
-const db = require('../../../db/init');
+const {db} = require('../../../db/init');
 
 describe('User', () => {
     beforeEach(() => jest.clearAllMocks())
