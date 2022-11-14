@@ -10,7 +10,7 @@ router.post('/login', userController.login)
 router.post('/register', userController.register)
 
 router.get('/users', userController.index)
-router.post('/habits', habitController.index)
-router.post('/trackers', trackerController.index)
+router.get('/habits', habitController.index)
+router.get('/trackers', trackerController.index)
 
 module.exports = router

@@ -1,4 +1,4 @@
-const Tracker = require('../models/habit');
+const Tracker = require('../models/tracker');
 
 async function index (req, res) {
     try {
@@ -8,6 +8,5 @@ async function index (req, res) {
         res.status(500).json({err})
     }
 }
-
 
 module.exports = {index}
