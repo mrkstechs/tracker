@@ -18,3 +18,5 @@ function showWater(){
 function showExercise(){
     window.location.assign("/client/exercise.html")
 }
+
+module.exports = { showExercise, showSleep, showWater}
