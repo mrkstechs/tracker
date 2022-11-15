@@ -12,12 +12,12 @@ body {
 }
 
 li, a, button {
-    font-size: 16px;
+    font-size: 17px;
     text-decoration: none;
 }
 
 header {
-    background-color: #2E54A9;
+    background-color: #1F4AAC ;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,8 +52,8 @@ header {
 
 button {
     border-radius: 15px;
-    height: 30px;
-    width: 80px;
+    height: 35px;
+    width: 120px;
     border: none;
     text-align: center;
     background-color: #57BD54;
@@ -67,6 +67,10 @@ button:hover {
     background-color: #083AA9;
     cursor: pointer;
     transition: 0.5s;
+}
+
+a#selected {
+    color: #57BD54
 }
 
 .card {
