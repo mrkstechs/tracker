@@ -39,3 +39,7 @@
 ##### `/goals`
     - GET: displays all goals
     - POST: adds new goal to database `{ userId, habitId, dailyGoal, weeklyGoal, goalUnits }`
+##### `/goals/:userid`
+    - GET: displays all goals with user id
+##### `/goals/:userid/:habitid`
+    - GET: displays only goals of specified habit with user id  
