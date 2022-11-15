@@ -117,7 +117,7 @@ async function requestRegistration(e) {
 }
 
 function login(data){
-    localStorage.setItem("username", data.username);
+    localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
     
     window.location.assign("/client/homepage.html");

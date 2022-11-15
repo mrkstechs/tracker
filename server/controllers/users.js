@@ -13,7 +13,7 @@ async function login (req, res) {
             res.status(200).json({
                 succes: true, 
                 token: await createToken(user),
-                username: req.body.username
+                user: user
             })
         } else {
             throw new Error('User could not be authenticated')  
