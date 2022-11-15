@@ -5,7 +5,7 @@ VALUES
 INSERT INTO habits (habit, recommended_daily_goal, recommended_weekly_goal)
 VALUES
 ('Sleep', '8 hours', '56 hours'),
-('Exercise', '30 minutes', '3 hours'),
+('Exercise', '0.5 hours', '3 hours'),
 ('Water', '3 litres', '56 litres');
 
 INSERT INTO tracker (habit_id, habit_daily_value, date, user_id)
@@ -34,3 +34,9 @@ VALUES
 (3,4,'2022-11-12', 1),
 (3,3,'2022-11-13', 1),
 (3,2,'2022-11-14', 1);
+
+INSERT INTO goals (user_id, habit_id, daily_goal, weekly_goal, goal_units)
+VALUES
+(1, 1, 8, 56, "hours"),
+(1, 2, 1, 4, "hours"),
+(1, 3, 3, 56, "litres")
