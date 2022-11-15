@@ -27,4 +27,13 @@ async function findByUserId (req, res) {
     }
 }
 
-module.exports = {index, newTracker, findByUserId}
+async function findByUserAndHabit (req, res) {
+    try {
+        const trackers = await Tracker.findByUserAndHabit(parseInt(req.params.userid), parseInt(req.params.habitid));
+        res.status(200).json(trackers)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = {index, newTracker, findByUserId, findByUserAndHabit}
