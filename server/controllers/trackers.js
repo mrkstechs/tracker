@@ -36,4 +36,14 @@ async function findByUserAndHabit (req, res) {
     }
 }
 
-module.exports = {index, newTracker, findByUserId, findByUserAndHabit}
+async function updateTracker (req, res) {
+    try {
+        const tracker = await Tracker.findByUserHabitAndDate(parseInt(req.body.userid), parseInt(req.body.habitid), (req.body.date))
+        const updatedTracker = await Tracker.updateDailyValue(tracker.id, req.body.dailyValue)
+        res.status(200).json(updatedTracker)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = {index, newTracker, findByUserId, findByUserAndHabit, updateTracker}
