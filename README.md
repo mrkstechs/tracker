@@ -47,3 +47,9 @@
     - GET: displays all goals with user id
 ##### `/goals/:userid/:habitid`
     - GET: displays only goals of specified habit with user id  
+
+
+#### Habit Ids:
+- 1 = sleep
+- 2 = exercise
+- 3 = water
