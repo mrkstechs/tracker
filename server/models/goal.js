@@ -1,6 +1,6 @@
 const {db} = require('../db/init');
 
-module.exports = class Goals {
+module.exports = class Goal {
     constructor(data){
         this.id = data.id
         this.userId = data.user_id
@@ -15,7 +15,7 @@ module.exports = class Goals {
             try {
                 let result = await db.query(`INSERT INTO goals (user_id, habit_id, daily_goal, weekly_goal, goal_units)
                                                 VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[userId, habitId, dailyGoal, weeklyGoal, goalUnits]);
-                let newGoal = new Goals(result.rows[0]);
+                let newGoal = new Goal(result.rows[0]);
                 res(newGoal)
             } catch (err) {
                 rej(`Error creating goal: ${err}`)
@@ -27,7 +27,7 @@ module.exports = class Goals {
         return new Promise (async (resolve, reject) => {
             try {
                 let result = await db.query('SELECT * FROM goals');
-                let goals = result.rows.map(g => new Goals(g));
+                let goals = result.rows.map(g => new Goal(g));
                 resolve (goals);
             } catch (err) {
                 reject('Goals not found');
@@ -36,6 +36,29 @@ module.exports = class Goals {
     };
 
     //get by userId
+    static findByUserId (userId) {
+        return new Promise (async (res, rej) => {
+            try {
+                let result = await db.query('SELECT * FROM goals WHERE user_id = $1', [userId]);
+                let goals = result.rows.map(g => new Goal(g));
+                res(goals);
+            } catch (err) {
+                rej(`No goals found for this UserId: ${err}`);
+            }
+    })
+};
 
     //get by userId and habitId
+
+    static findByUserAndHabit (userId, habitId) {
+        return new Promise (async (res, rej) => {
+            try {
+                let result = await db.query('SELECT * FROM goals WHERE user_id = $1 AND habit_id = $2', [userId , habitId]);
+                let goals = result.rows.map(g => new Goal(g));
+                res(goals);
+            } catch (err) {
+                rej(`No goals found for this user and habit: ${err}`)
+            }
+        })
+    }
 }

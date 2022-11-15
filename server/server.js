@@ -9,15 +9,10 @@ const goalRoutes = require('./routes/hoals')
 const trackerRoutes = require('./routes/trackers')
 const habitRoutes = require('./routes/habits')
 
-
-
 server.use('/users', userRoutes)
 server.use('/goals', goalRoutes)
 server.use('/trackers', trackerRoutes)
 server.use('/habits', habitRoutes)
-
-
-
 
 server.get('/', (req, res) => res.send('Accessing HabitHelper backend'));
 
