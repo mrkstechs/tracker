@@ -38,7 +38,7 @@ module.exports = class Tracker {
         return new Promise (async (res, rej) => {
             try {
                 let updatedData = await db.query('UPDATE tracker SET habit_daily_value = $1 WHERE id = $2', [ newDailyValue, trackerId ])
-                res.json(updatedData)
+                res(updatedData)
             } catch (err) {
                 rej(`Unable to update value: ${err}`)
             }

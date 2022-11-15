@@ -38,7 +38,7 @@ async function findByUserAndHabit (req, res) {
 
 async function updateTracker (req, res) {
     try {
-        const tracker = await Tracker.findByUserHabitAndDate(parseInt(req.params.userid), parseInt(req.params.habitid), toString(req.params.date))
+        const tracker = await Tracker.findByUserHabitAndDate(parseInt(req.body.userid), parseInt(req.body.habitid), (req.body.date))
         const updatedTracker = await Tracker.updateDailyValue(tracker.id, req.body.dailyValue)
         res.status(200).json(updatedTracker)
     } catch (err) {
