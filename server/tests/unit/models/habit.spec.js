@@ -1,10 +1,10 @@
-const User = require('../../../models/user');
+const Habit = require('../../../models/habit');
 const pg = require('pg');
 jest.mock('pg');
 
 const {db} = require('../../../db/init');
 
-describe('User model', () => {
+describe('Habit model', () => {
     beforeEach(() => jest.clearAllMocks())
 
     afterAll(() => jest.resetAllMocks())
@@ -27,16 +27,4 @@ describe('User model', () => {
             expect(result).toHaveProperty('id')
         })
     });
-    
-
-    describe('findByUsername', () => {
-        test('it resolves with user on successful db query', async () => {
-            let userData = { id: 1, username: 'testusername' }
-            jest.spyOn(db, 'query')
-                .mockResolvedValueOnce({rows: [ userData ] });
-            const result = await User.findByUsername("testusername");
-            expect(result).toBeInstanceOf(User)
-        })
-    });
-    
-})
+});

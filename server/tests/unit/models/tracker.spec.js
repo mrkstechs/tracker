@@ -4,7 +4,7 @@ jest.mock('pg');
 
 const {db} = require('../../../db/init');
 
-describe('Tracker', () => {
+describe('Tracker model', () => {
     beforeEach(() => jest.clearAllMocks())
 
     afterAll(() => jest.resetAllMocks())
