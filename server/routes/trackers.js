@@ -10,4 +10,6 @@ router.get('/:userid/:habitid', trackerController.findByUserAndHabit)
 
 router.post('/', trackerController.newTracker)
 
+router.put('/:userid/:habitid/:date', trackerController.updateTracker)
+
 module.exports = router
