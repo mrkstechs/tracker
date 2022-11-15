@@ -1,5 +1,6 @@
 window.addEventListener('load', displayHabits)
 
+const habitSection = document.querySelector('#habits')
 
 async function exPreview (user) {
     try {
@@ -33,16 +34,49 @@ async function displayHabits () {
     userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
     if (userTrackedGoals.find(habit => habit.id == 1)) {
         console.log("User is tracking sleep")
-        // displaySleep()
+        displaySleep()
     }
     if (userTrackedGoals.find(habit => habit.id == 2)) {
         console.log("User is tracking exercise")
-        // displayExercise()
+        displayExercise()
     }
     if (userTrackedGoals.find(habit => habit.id == 3)) {
         console.log("User is tracking water")
-        // dislpayWater()
+        displayWater()
     }
+}
+
+async function displaySleep() {
+    const markup = `<div class="habit">
+                        <i class="bi bi-alarm"></i>
+                        <h2>Sleep</h2>
+                        <div class="progress" id="sleep">
+                        <h3>Your progress so far:</h3>
+                        </div>
+                    </div>`
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+}
+
+async function displayExercise() {
+    const markup = `<div class="habit">
+                        <i class="bi bi-graph-up"></i>
+                        <h2>Exercise</h2>
+                        <div class="progress" id="exercise">
+                        <h3>Your progress so far:</h3>
+                        </div>
+                    </div>`
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+}
+
+async function displayWater() {
+    const markup = `<div class="habit">
+                        <i class="bi bi-droplet"></i>
+                        <h2>Water</h2>
+                        <div class="progress" id="water">
+                        <h3>Your progress so far:</h3>
+                        </div>
+                    </div>`
+    habitSection.insertAdjacentHTML('afterbegin', markup)
 }
 
 exPreview(1)
