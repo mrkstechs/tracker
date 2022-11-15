@@ -1,7 +1,7 @@
 const sleepButton = document.querySelector('#sleepButton');
 const exericseButton = document.querySelector('#exerciseButton');
 const waterButton = document.querySelector('#waterButton');
-const body = document.querySelector('body');
+
 
 sleepButton.addEventListener('click', showSleep);
 waterButton.addEventListener('click', showWater);
