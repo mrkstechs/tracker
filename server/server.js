@@ -4,9 +4,15 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const apiRoutes =  require('./routes/api')
+const userRoutes =  require('./routes/users')
+const goalRoutes = require('./routes/goals')
+const trackerRoutes = require('./routes/trackers')
+const habitRoutes = require('./routes/habits')
 
-server.use('/api', apiRoutes)
+server.use('/users', userRoutes)
+server.use('/goals', goalRoutes)
+server.use('/trackers', trackerRoutes)
+server.use('/habits', habitRoutes)
 
 server.get('/', (req, res) => res.send('Accessing HabitHelper backend'));
 
