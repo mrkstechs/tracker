@@ -22,4 +22,27 @@ async function exPreview (user) {
 
 // }
 
+async function getUser() {
+    user = await JSON.parse(localStorage.getItem("user"));
+    return user
+}
+
+async function displayHabits () {
+    const user = await getUser();
+    console.log(user)
+    userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
+    if (userTrackedGoals.find(habit => habit.id == 1)) {
+        console.log("User is tracking sleep")
+        // displaySleep()
+    }
+    if (userTrackedGoals.find(habit => habit.id == 2)) {
+        console.log("User is tracking exercise")
+        // displayExercise()
+    }
+    if (userTrackedGoals.find(habit => habit.id == 3)) {
+        console.log("User is tracking water")
+        // dislpayWater()
+    }
+}
+
 exPreview(1)
