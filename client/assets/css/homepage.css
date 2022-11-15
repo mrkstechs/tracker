@@ -129,3 +129,31 @@ h3 {
     cursor: pointer;
     transition: 0.5s;
 }
+
+
+
+
+
+.waterpop {
+    width: 400px;
+    background-color: #083AA9;
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    transform: translate(-50%, -50%) scale(0.1);
+    padding: 0 30px 30px;
+    text-align: center;
+    visibility: hidden;
+}
+
+.water-pop {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.closewater {
+    color: black;
+    z-index: 1;
+}
+
