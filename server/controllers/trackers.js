@@ -18,4 +18,22 @@ async function newTracker (req, res) {
     }
 }
 
-module.exports = {index, newTracker}
+async function findByUserId (req, res) {
+    try {
+        const trackers = await Tracker.findByUserId(parseInt(req.params.userid));
+        res.status(200).json(trackers)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+async function findByUserAndHabit (req, res) {
+    try {
+        const trackers = await Tracker.findByUserAndHabit(parseInt(req.params.userid), parseInt(req.params.habitid));
+        res.status(200).json(trackers)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = {index, newTracker, findByUserId, findByUserAndHabit}

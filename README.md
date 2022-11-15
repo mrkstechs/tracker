@@ -25,3 +25,7 @@
 ##### `/api/trackers`
     - GET: displays all trackers
     - POST: add tracker to database `{ habitId, dailyValue, date, userId }`
+##### `/api/trackers/:userid`
+    - GET: displays all trackers with user id
+##### `/api/trackers/:userid/:habitid`
+    - GET: displays only trackers of a specified habit with user id
