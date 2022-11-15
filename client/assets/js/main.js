@@ -1,4 +1,11 @@
 const scrollContainer = document.querySelector(".cards");
+const title = document.querySelector('#profileheader');
+const home = document.querySelector('#home')
+firstName = localStorage.getItem('firstName');
+title.textContent = `Hello ${firstName} welcome to your profile`;
+
+
+home.addEventListener('click', showHome);
 
 scrollContainer.addEventListener("wheel", (event) => {
     event.preventDefault();
@@ -9,3 +16,7 @@ scrollContainer.addEventListener("wheel", (event) => {
     
 
 });
+
+function showHome(){
+    window.location.assign('/client/homepage.html')
+}
