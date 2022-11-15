@@ -4,7 +4,7 @@ module.exports = class Tracker {
     constructor(data){
         this.id = data.id
         this.habitId = data.habit_id
-        this.dailyValue = data.dailyValue
+        this.dailyValue = data.habit_daily_value
         this.date = data.date
         this.userId = data.user_id
     }
