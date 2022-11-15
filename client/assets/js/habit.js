@@ -1,3 +1,5 @@
+window.addEventListener('load', displayHabits)
+
 
 async function exPreview (user) {
     try {

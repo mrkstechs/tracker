@@ -117,8 +117,11 @@ async function requestRegistration(e) {
 }
 
 function login(data){
+    localStorage.setItem("username", data.username);
     localStorage.setItem('token', data.token);
-    window.location.assign("/client/homepage.html")
+    
+    window.location.assign("/client/homepage.html");
+    
     // const message = document.createElement('p');
     // message.textContent = "Succesful login";
     // form.append(message);
