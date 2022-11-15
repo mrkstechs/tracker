@@ -31,5 +31,30 @@ div.habit {
     margin: 0 7em;
     padding: 2em;
     
-    
+}
+
+h1{
+    color: white;
+    padding-left: 10px;
+}
+
+#home{
+    border-radius: 15px;
+    height: 45px;
+    width: 150px;
+    border: none;
+    text-align: center;
+    background-color: #57BD54;
+    color: white;
+    font-family: "Work Sans";
+    transition: 0.5s;
+    margin-left: 10px;
+}
+
+
+#home:hover {
+    background-color: #CFF5E7;
+    cursor: pointer;
+    transition: 0.5s;
+    color: black;
 }
