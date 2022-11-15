@@ -5,7 +5,7 @@ server.use(cors());
 server.use(express.json());
 
 const userRoutes =  require('./routes/users')
-const goalRoutes = require('./routes/hoals')
+const goalRoutes = require('./routes/goals')
 const trackerRoutes = require('./routes/trackers')
 const habitRoutes = require('./routes/habits')
 
