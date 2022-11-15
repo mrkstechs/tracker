@@ -15,7 +15,6 @@ module.exports = class Tracker {
                 let result = await db.query(`INSERT INTO tracker (habit_id, habit_daily_value, date, user_id)
                                                 VALUES ($1, $2, $3, $4) RETURNING *;`,[habitId, dailyValue, date, userId]);
                 let tracker = new Tracker(result.rows[0]);
-                console.log(tracker)
                 res(tracker)
             } catch (err) {
                 rej(`Error creating user: ${err}`)
@@ -27,11 +26,23 @@ module.exports = class Tracker {
         return new Promise (async (resolve, reject) => {
             try {
                 let result = await db.query('SELECT * FROM tracker');
-                let trackers = result.rows.map(d => new Tracker(d));
+                let trackers = result.rows.map(t => new Tracker(t));
                 resolve (trackers);
             } catch (err) {
-                reject('Trackers not found');
+                reject('Trackers not found: ${err}');
             }
         });
     };
+    
+    static findByUserId (userId) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1', userId);
+                let trackers = result.rows.map(t => new Tracker(t));
+                res(trackers);
+            } catch (err) {
+                reject(`No trackers found for this UserId: ${err}`);
+            }
+        })
+    }
 };
