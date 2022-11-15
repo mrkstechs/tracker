@@ -34,4 +34,8 @@ module.exports = class Goals {
             }
         });
     };
+
+    //get by userId
+
+    //get by userId and habitId
 }
