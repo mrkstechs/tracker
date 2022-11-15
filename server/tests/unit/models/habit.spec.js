@@ -9,21 +9,21 @@ describe('Habit model', () => {
 
     afterAll(() => jest.resetAllMocks())
 
-    describe('Get all users', () => {
-        test('it resolves with all users on successful db query', async () => {
+    describe('Get all habits', () => {
+        test('it resolves with all habits on successful db query', async () => {
             jest.spyOn(db, 'query')
                 .mockResolvedValueOnce({ rows: [{}, {}, {}]});
-            const all = await User.all;
+            const all = await Habit.all;
             expect(all).toHaveLength(3)
         })
     });
 
     describe('create', () => {
-        test('it resolves with new user on successful db query', async () => {
-            let userData = { username: 'newUser', firstName: "New", lastName: "User", email: "newuser@test.com", password:"testpass" }
+        test('it resolves with new habit on successful db query', async () => {
+            let habitData = {habit: "testHabit", recommended_daily_goal: "2 tests", recommended_weekly_goal: "8 tests"}
             jest.spyOn(db, 'query')
-                .mockResolvedValueOnce({rows: [ { ...userData, id: 1 }] });
-            const result = await User.create(userData);
+                .mockResolvedValueOnce({rows: [ { ...habitData, id: 1 }] });
+            const result = await Habit.create(habitData);
             expect(result).toHaveProperty('id')
         })
     });
