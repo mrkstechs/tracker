@@ -20,7 +20,7 @@ async function newTracker (req, res) {
 
 async function findByUserId (req, res) {
     try {
-        const trackers = await Tracker.findByUserId(parseInt(req.params.id));
+        const trackers = await Tracker.findByUserId(parseInt(req.params.userid));
         res.status(200).json(trackers)
     } catch (err) {
         res.status(500).json({err})

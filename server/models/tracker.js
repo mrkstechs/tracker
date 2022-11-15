@@ -23,25 +23,25 @@ module.exports = class Tracker {
     }
 
     static get all(){
-        return new Promise (async (resolve, reject) => {
+        return new Promise (async (res, rej) => {
             try {
                 let result = await db.query('SELECT * FROM tracker');
                 let trackers = result.rows.map(t => new Tracker(t));
-                resolve (trackers);
+                res(trackers);
             } catch (err) {
-                reject('Trackers not found: ${err}');
+                rej('Trackers not found: ${err}');
             }
         });
     };
     
     static findByUserId (userId) {
-        return new Promise (async (resolve, reject) => {
+        return new Promise (async (res, rej) => {
             try {
                 let result = await db.query('SELECT * FROM tracker WHERE user_id = $1', [userId]);
                 let trackers = result.rows.map(t => new Tracker(t));
                 res(trackers);
             } catch (err) {
-                reject(`No trackers found for this UserId: ${err}`);
+                rej(`No trackers found for this UserId: ${err}`);
             }
         })
     }

@@ -14,6 +14,6 @@ router.post('/trackers', trackerController.newTracker)
 router.get('/users', userController.index)
 router.get('/habits', habitController.index)
 router.get('/trackers', trackerController.index)
-router.get('/trackers/:id', trackerController.findByUserId)
+router.get('/trackers/:userid', trackerController.findByUserId)
 
 module.exports = router
