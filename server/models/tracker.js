@@ -45,4 +45,6 @@ module.exports = class Tracker {
             }
         })
     }
+
+    static findByUserAndHabit (userId, habitId)
 };
