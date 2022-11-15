@@ -37,7 +37,7 @@ module.exports = class Tracker {
     static findByUserId (userId) {
         return new Promise (async (resolve, reject) => {
             try {
-                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1', userId);
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1', [userId]);
                 let trackers = result.rows.map(t => new Tracker(t));
                 res(trackers);
             } catch (err) {

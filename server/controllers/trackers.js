@@ -18,4 +18,13 @@ async function newTracker (req, res) {
     }
 }
 
-module.exports = {index, newTracker}
+async function findByUserId (req, res) {
+    try {
+        const trackers = await Tracker.findByUserId(parseInt(req.params.id));
+        res.status(200).json(trackers)
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports = {index, newTracker, findByUserId}
