@@ -16,16 +16,26 @@
 - type `npm run dev` in another `terminal` 
 
 #### Paths available:
-##### `/api/users`
+
+##### `/users`
     - GET: displays all users
+##### `/users/login`    
+    - POST: login to site `{username, password}`
+##### `/users/register`  
     - POST: add user to database `{ email, firstName, lastName, username, password }`
-##### `/api/habits`
+
+##### `/habits`
     - GET: displays all habits
     - POST: add habit to database `{ habit, recommended_daily_goal, recommended_weekly_goal }`
-##### `/api/trackers`
+
+##### `/trackers`
     - GET: displays all trackers
     - POST: add tracker to database `{ habitId, dailyValue, date, userId }`
-##### `/api/trackers/:userid`
+##### `/trackers/:userid`
     - GET: displays all trackers with user id
-##### `/api/trackers/:userid/:habitid`
+##### `/trackers/:userid/:habitid`
     - GET: displays only trackers of a specified habit with user id
+
+##### `/goals`
+    - GET: displays all goals
+    - POST: adds new goal to database `{ userId, habitId, dailyGoal, weeklyGoal, goalUnits }`
