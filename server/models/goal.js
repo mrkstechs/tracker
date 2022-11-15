@@ -14,7 +14,7 @@ module.exports = class Goals {
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO goals (user_id, habit_id, daily_goal, weekly_goal, goal_units)
-                                                VALUES ($1, $2, $3) RETURNING *;`,[userId, habitId, dailyGoal, weeklyGoal, goalUnits]);
+                                                VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[userId, habitId, dailyGoal, weeklyGoal, goalUnits]);
                 let newGoal = new Goals(result.rows[0]);
                 res(newGoal)
             } catch (err) {

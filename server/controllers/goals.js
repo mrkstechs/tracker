@@ -13,7 +13,7 @@ async function newGoal (req, res) {
     try {
         const newGoal = await Goal.create(req.body)
         res.status(200).json(newGoal)
-    } catch {
+    } catch (err) {
         res.status(500).json({err})
     }
 }
