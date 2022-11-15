@@ -70,7 +70,6 @@ async function displaySleep(user, sleepGoal) {
                                     <div class="circular-progress">
                                         <span class="progress-value">7/8 hours</span>
                                     </div>
-                                    <span class="text">Sleep<span>
                                 </div>`
     const progressSection = document.querySelector('#sleep')
     progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
