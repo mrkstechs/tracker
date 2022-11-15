@@ -37,6 +37,6 @@ VALUES
 
 INSERT INTO goals (user_id, habit_id, daily_goal, weekly_goal, goal_units)
 VALUES
-(1, 1, 8, 56, "hours"),
-(1, 2, 1, 4, "hours"),
-(1, 3, 3, 56, "litres")
+(1, 1, 8, 56, 'hours'),
+(1, 2, 1, 4, 'hours'),
+(1, 3, 3, 56, 'litres');
