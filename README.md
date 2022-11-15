@@ -31,14 +31,15 @@
 ##### `/trackers`
     - GET: displays all trackers
     - POST: add tracker to database `{ habitId, dailyValue, userId }`
+    - PUT: update specific tracker `{ userid, habitid, date, dailyValue}`
 ##### `/trackers/:userid`
     - GET: displays all trackers with user id
 ##### `/trackers/:userid/:habitid`
     - GET: displays only trackers of a specified habit with user id
 ##### `/trackers/:userid/:habitid/:date`
     - GET: displays only trackers of a specified habit with user id for specified date
-    - PUT: update specific tracker {dailyValue}
- 
+
+
 ##### `/goals`
     - GET: displays all goals
     - POST: adds new goal to database `{ userId, habitId, dailyGoal, weeklyGoal, goalUnits }`
