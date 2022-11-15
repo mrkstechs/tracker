@@ -1,5 +1,5 @@
 
-async function exPreview (user, exercise) {
+async function exPreview (user) {
     try {
         const response = await fetch(`/goals/${user}/${exercise}`)
         const data = await response.json();
