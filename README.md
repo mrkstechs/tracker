@@ -14,3 +14,18 @@
 - make sure your in the `server` directory
 - type `npm run up` to start up the `db`
 - type `npm run dev` in another `terminal` 
+
+#### Paths available:
+##### `/api/users`
+    - GET: displays all users
+    - POST: add user to database `{ email, firstName, lastName, username, password }`
+##### `/api/habits`
+    - GET: displays all habits
+    - POST: add habit to database `{ habit, recommended_daily_goal, recommended_weekly_goal }`
+##### `/api/trackers`
+    - GET: displays all trackers
+    - POST: add tracker to database `{ habitId, dailyValue, date, userId }`
+##### `/api/trackers/:userid`
+    - GET: displays all trackers with user id
+##### `/api/trackers/:userid/:habitid`
+    - GET: displays only trackers of a specified habit with user id
