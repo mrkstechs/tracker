@@ -1,21 +1,20 @@
 const sleepButton = document.querySelector('#sleepButton');
-const exericseButton = document.querySelector('#sleepButton');
-const waterButton = document.querySelector('#sleepButton');
+const exericseButton = document.querySelector('#exerciseButton');
+const waterButton = document.querySelector('#waterButton');
 const body = document.querySelector('body');
 
 sleepButton.addEventListener('click', showSleep);
+waterButton.addEventListener('click', showWater);
+exerciseButton.addEventListener('click', showExercise);
 
-function showSleep (){
-    body.style.backgroundColor = '#083AA9'
-    body.innerHTML = '';
-    markup = `
-    <div class="sleepSection">
-        <div id="sleepInput">
-        <h2> Track your sleep here </h2>
-        <input type="text" name="Sleep" id="sleep" required>
-        <span></span>
-        <label>Hours of Sleep</label>
-        </div>
-    </div>`
-    body.insertAdjacentHTML('beforeend', markup); 
+function showSleep(){
+    window.location.assign("/client/sleep.html")
+}
+
+function showWater(){
+    window.location.assign("/client/water.html")
+}
+
+function showExercise(){
+    window.location.assign("/client/exercise.html")
 }
