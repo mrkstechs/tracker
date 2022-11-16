@@ -67,10 +67,45 @@ async function submitGoal (e) {
 function displayAddTrackerButton (user) {
     const logWaterSection = document.querySelector('div.logWater')
     logWaterSection.innerHTML = ""
-    markup = `<button id="displayAddTrackerForm" class="sleepButton"><i class="bi-plus"></i><br>Log Water!</button>`
+    markup = `<button id="displayAddTrackerForm" class="waterButton"><i class="bi-plus"></i><br>Log Water!</button>`
     logWaterSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerForm')
     button.addEventListener('click', () => {displayAddTrackerForm(logWaterSection, user)})
+}
+
+function displayAddTrackerForm (pageSection, user) {
+    pageSection.innerHTML = ""
+    markup = `<form id="waterForm">
+                <input type="range" id="addWater" name="addWater" value="0" min="0" max="10" step="1" oninput="this.nextElementSibling.firstChild.value = this.value"></input>
+                <label for="addWater"><output>0</output> cups</label>
+                <input type="submit" id="submitWater" value="Log Water!">
+            </form>
+            <button id="displayAddTrackerButton">back</button>`
+    pageSection.insertAdjacentHTML('afterbegin',markup)
+    const button = document.querySelector('#displayAddTrackerButton')
+    button.addEventListener('click', function() {displayAddTrackerButton(user)})
+
+    const waterForm = document.querySelector('#waterForm')
+    waterForm.addEventListener('submit', submitTracker)
+}
+
+async function submitTracker (e) {
+    e.preventDefault();
+    const dailyValue = e.target.addWater.value
+    try {
+        const body = { "habitId": 3, "dailyValue": dailyValue, "userId": user.id }
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        }
+        const r = await fetch(`http://localhost:3000/trackers`, options)
+        const data = await r.json()
+        if (data.err){ throw Error(data.err) }
+        window.location.reload();
+    } catch (err) {
+        console.warn(err);
+    }
 }
 
 async function displayGoal(waterGoal){
