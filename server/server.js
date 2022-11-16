@@ -11,6 +11,6 @@ server.use(express.static(path.resolve('./client/')))
 server.use('/api', apiRoutes)
 
 
-server.get('/', (req, res) => res.sendFile(path.join('./client/index.html')))
+server.get('/', (req, res) => res.sendFile(path.resolve('./server/client/index.html')))
 
 module.exports = server;
