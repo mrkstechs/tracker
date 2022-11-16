@@ -80,8 +80,8 @@ a#selected {
 
 .card {
     margin: 5em auto;
-    width: 60%;
-    height: 7em;
+    width: 60vw;
+    height: 75vh;
     background-color: #CFF5E7;
     border-radius: 15px;
 }
