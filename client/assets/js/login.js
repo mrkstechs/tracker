@@ -25,8 +25,8 @@ function showLogin () {
                 </div>`
     form.insertAdjacentHTML('beforeend', markup);
 
-    // const registerButton = document.querySelector('#submitRegisterButton')
-    // registerButton.addEventListener('submit', showRegister)
+    const registerButton = document.querySelector('#submitRegisterButton')
+    registerButton.addEventListener('submit', showRegister)
     const loginButton = document.querySelector('#loginButton')
     loginButton.addEventListener('submit', requestLogin)
 }
