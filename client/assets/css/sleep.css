@@ -70,3 +70,24 @@
 input[type=range] {
     width: 100%;
 }
+
+.newGoal {
+    background-color: #6c9aff;
+    border-radius: 50%;
+    width: 150px; 
+    height: 150px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.newGoal h1 {
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.newGoal h4 {
+    margin-top: 0;
+}
