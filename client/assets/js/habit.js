@@ -65,7 +65,7 @@ function displayNewSleepGoal(user) {
                 <h2>Sleep</h2>
                 <div class="newGoal">
                     <h1>+</h1>
-                    <h4>Start tracking sleep!</h4>
+                    <h4>Start tracking your sleep!</h4>
                 </div>
             </div>`;
     habitSection.insertAdjacentHTML('afterbegin', markup)
@@ -73,6 +73,40 @@ function displayNewSleepGoal(user) {
     const sleepCard = document.querySelector('#sleepHabit')
     sleepCard.addEventListener('click', sendToSleep)
 }
+
+
+function displayNewExerciseGoal(user) {
+    markup = `<div class="habit" id="exerciseHabit">
+                <i class="bi bi-heart-pulse"></i>
+                <h2>Exercise</h2>
+                <div class="newGoal">
+                    <h1>+</h1>
+                    <h4>Start tracking your exercise!</h4>
+                </div>
+            </div>`;
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+    
+    const exerciseCard = document.querySelector('#exerciseHabit')
+    exerciseCard.addEventListener('click', sendToExercise)
+}
+
+
+function displayNewWaterGoal(user) {
+    markup = `<div class="habit" id="waterHabit">
+                <i class="bi bi-droplet"></i>
+                <h2>Water</h2>
+                <div class="newGoal">
+                    <h1>+</h1>
+                    <h4>Start tracking your water consumption!</h4>
+                </div>
+            </div>`;
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+    
+    const waterCard = document.querySelector('#waterHabit')
+    waterCard.addEventListener('click', sendToWater)
+}
+
+
 
 async function displaySleep(user, sleepGoal) {
     const sleepData = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
@@ -119,6 +153,14 @@ async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
 
 async function sendToSleep() {
     window.location.assign('/client/sleep.html')
+}
+
+async function sendToWater() {
+    window.location.assign('/client/water.html')
+}
+
+async function sendToExercise() {
+    window.location.assign('/client/exercise.html')
 }
 
 async function displayExercise() {
