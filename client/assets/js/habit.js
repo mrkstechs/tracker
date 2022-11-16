@@ -64,7 +64,7 @@ async function displaySleep(user, sleepGoal) {
     const lastSleep = sleepData[(sleepData.length-1)]
     console.log(lastSleep)
     
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="sleepHabit">
                         <i class="bi bi-alarm"></i>
                         <h2>Sleep</h2>
                         <div class="progress" id="sleep">
@@ -82,16 +82,23 @@ async function displaySleep(user, sleepGoal) {
     const progressSection = document.querySelector('#sleep')
     progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
     
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
+
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
     
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
-    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`
+    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
 } 
 
+async function sendToSleep() {
+    window.location.assign('/client/sleep.html')
+}
+
 async function displayExercise() {
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="exerciseHabit">
                         <i class="bi bi-graph-up"></i>
                         <h2>Exercise</h2>
                         <div class="progress" id="exercise">
@@ -99,10 +106,18 @@ async function displayExercise() {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const exerciseCard = document.querySelector('#exerciseHabit')
+    exerciseCard.addEventListener('click', sendToExercise)
+
+}
+
+async function sendToExercise() {
+    window.location.assign('/client/exercise.html')
 }
 
 async function displayWater() {
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="waterHabit">
                         <i class="bi bi-droplet"></i>
                         <h2>Water</h2>
                         <div class="progress" id="water">
@@ -110,6 +125,13 @@ async function displayWater() {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const waterCard = document.querySelector('#waterHabit')
+    waterCard.addEventListener('click', sendToWater)
+}
+
+async function sendToWater() {
+    window.location.assign('/client/water.html')
 }
 
 exPreview(1)
