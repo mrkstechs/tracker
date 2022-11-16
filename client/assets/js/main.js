@@ -3,7 +3,7 @@
 // const home = document.querySelector('#home')
 
 
-// home.addEventListener('click', showHome);
+// });
 
 // function showHome(){
 //     window.location.assign('/client/homepage.html')
