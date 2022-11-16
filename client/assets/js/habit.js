@@ -41,16 +41,37 @@ async function displayHabits () {
     if (sleepGoal) {
         console.log("User is tracking sleep")
         displaySleep(user, sleepGoal)
+    } else {
+        displayNewSleepGoal(user)
     }
     if (exerciseGoal) {
         console.log("User is tracking exercise")
         displayExercise(user, exerciseGoal)
+    } else {
+        displayNewExerciseGoal(user)
     }
     if (waterGoal) {
         console.log("User is tracking water")
         displayWater(user, waterGoal)
+    } else {
+        displayNewWaterGoal(user)
     }
     // Needs add goal button if user has no goals
+}
+
+function displayNewSleepGoal(user) {
+    markup = `<div class="habit" id="sleepHabit">
+                <i class="bi bi-alarm"></i>
+                <h2>Sleep</h2>
+                <div class="newGoal">
+                    <h1>+</h1>
+                    <h4>Start tracking sleep!</h4>
+                </div>
+            </div>`;
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+    
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
 }
 
 async function displaySleep(user, sleepGoal) {

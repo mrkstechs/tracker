@@ -132,10 +132,12 @@ div.brand {
 }
 
 .habit {
-    
-    width: 450px;
-    height: 450px;
-    background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color: #CFF5E7;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -196,6 +198,7 @@ h5.exercisehour {
 #sleep{
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
     background-color: #57BD54;
     align-items: center;
 }
@@ -327,13 +330,6 @@ h5.exercisehour {
 
 
 
-.progress{
-    border: none;
-}
-
-.habit:hover{
-    cursor: pointer;
-}
 
 
 /* .waterpop {
@@ -375,14 +371,24 @@ h5.exercisehour {
     background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
     margin: 3em auto;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+
+.newGoal {
+    background-color: #6c9aff;
     border-radius: 50%;
+    width: 150px; 
+    height: 150px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-#waterIcon{
-    z-index: 1;
+.newGoal h1 {
     font-size: 50px;
+    margin-bottom: 0;
 }
 
-#waterText{
-    margin-top: -15px;
+.newGoal h4 {
+    margin-top: 0;
 }

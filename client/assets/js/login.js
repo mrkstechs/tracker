@@ -25,10 +25,10 @@ function showLogin () {
                 </div>`
     form.insertAdjacentHTML('beforeend', markup);
 
-    // const registerButton = document.querySelector('#submitRegisterButton')
-    // registerButton.addEventListener('submit', showRegister)
+    const registerButton = document.querySelector('#submitRegisterButton')
+    registerButton.addEventListener('click', showRegister)
     const loginButton = document.querySelector('#loginButton')
-    loginButton.addEventListener('submit', requestLogin)
+    loginButton.addEventListener('click', requestLogin)
 }
 
 function showRegister () {
@@ -68,17 +68,8 @@ function showRegister () {
     const backToLoginButton = document.querySelector('#backToLoginButton')
     backToLoginButton.addEventListener('click', showLogin)
     const submitRegisterButton = document.querySelector('#submitRegisterButton')
-    submitRegisterButton.addEventListener('submit', requestRegistration)
+    submitRegisterButton.addEventListener('click', requestRegistration)
 }
-
-
-function clearForms () {
-    // form.childNodes.forEach(child => {
-    //     console.log(child)
-    //     if (child == "#text") {child.remove()}
-    //     else if (child.classList.contains("account")) {child.remove()}})
-};
-
 
 async function requestLogin(e){
     e.preventDefault();
@@ -121,8 +112,4 @@ function login(data){
     localStorage.setItem('token', data.token);
     
     window.location.assign("/client/homepage.html");
-    
-    // const message = document.createElement('p');
-    // message.textContent = "Succesful login";
-    // form.append(message);
 }

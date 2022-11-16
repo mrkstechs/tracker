@@ -2,11 +2,12 @@ window.addEventListener('load', createDisplay)
 
 async function createDisplay() {
     const { user, sleepGoal, sleepTrackers, lastSleep } = await retrieveSleepData()
-    console.log(sleepGoal, sleepTrackers, lastSleep)
-    displaySleepProgress(sleepGoal, lastSleep)
-    displayGoal(sleepGoal)
-    displayStreak(sleepTrackers, sleepGoal)
-    displayAddTrackerButton(user)
+    if (!sleepGoal){displayAddSleepGoal} else {
+        displayLatestSleep(sleepGoal, lastSleep)
+        displayGoal(sleepGoal)
+        displayStreak(sleepTrackers, sleepGoal)
+        displayAddTrackerButton(user)
+    }
 }
 
 async function retrieveSleepData() {
@@ -17,12 +18,16 @@ async function retrieveSleepData() {
     return  { user, sleepGoal, sleepTrackers, lastSleep };
 }
 
-function displaySleepProgress(sleepGoal, lastSleep) {
+function displayAddSleepGoal () {
+    const progressSection = document.querySelector('div.progress')
+}
+
+function displayLatestSleep(sleepGoal, lastSleep) {
 
     const progressSection = document.querySelector('div.progress')
 
-
-    const goalProgressDisplay = `<div id="sleepProgress">
+    const goalProgressDisplay = `<h2>Progress</h2>
+                                <div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">? / 8 hours</span>
                                     </div>
@@ -38,17 +43,18 @@ function displaySleepProgress(sleepGoal, lastSleep) {
 
 function displayGoal(sleepGoal) {
     const goalSection = document.querySelector('div.goal') 
-    const goal = document.createElement('h1')
-    goal.textContent = `${sleepGoal.dailyGoal}`
-    goalSection.append(goal, "hours / night")
+    const markup = `<h2>Goal</h2>
+                    <h1>${sleepGoal.dailyGoal}</h1>
+                    <h3> hours / night </h3`
+    goalSection.insertAdjacentHTML("afterbegin",markup)
 }
 
 function displayStreak(sleepTrackers, sleepGoal) {
     const streakSection = document.querySelector('div.streak')
     const streak = calculateStreak(sleepTrackers, sleepGoal);
-    const streakElement = document.createElement('h1');
-    streakElement.textContent = `${streak}`;
-    streakSection.append(streak);
+    const markup = `<h2>Streak</h2>
+                    <h1>${streak}<i class="bi bi-fire"></i></h1>`
+    streakSection.insertAdjacentHTML("afterbegin",markup)
 }
 
 function calculateStreak(sleepTrackers, sleepGoal){
@@ -66,7 +72,7 @@ function calculateStreak(sleepTrackers, sleepGoal){
 function displayAddTrackerButton (user) {
     const logSleepSection = document.querySelector('div.logSleep')
     logSleepSection.innerHTML = ""
-    markup = `<button id="displayAddTrackerForm">Log Sleep!</button>`
+    markup = `<button id="displayAddTrackerForm" class="sleepButton"><i class="bi-plus"></i><br>Log Sleep!</button>`
     logSleepSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerForm')
     button.addEventListener('click', () => {displayAddTrackerForm(logSleepSection, user)})
@@ -96,110 +102,13 @@ async function submitTracker (e) {
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: body
+            body: JSON.stringify(body)
         }
         const r = await fetch(`http://localhost:3000/trackers`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
-        requestLogin(e);
+        window.location.reload();
     } catch (err) {
         console.warn(err);
     }
 }
-
-
-
-// const sleepHabit = document.querySelector('#addSleepButton');
-// const body = document.querySelector('body');
-// const progress = document.querySelector('#progressDone');
-// const progressBar = document.querySelector('#progress');
-
-
-// sleepHabit.addEventListener('click', addSleep);
-
-// //add a habit
-// function addSleep(e){
-//     e.preventDefault();
-//     const amountGot = document.querySelector('#amountGot').value
-//     const amountWanted = document.querySelector('#amountWanted').value
-//     const dateDay = new Date().getDay()
-//     const dateMonth = new Date().getMonth()
-
-//     progress.style.width = `${(amountGot/amountWanted)*100}%`
-//     progress.innerText = `${Math.ceil((amountGot/amountWanted)*100)}%`
-
-//     switch (dateDay) {
-//         case 0:
-//             day = "Sunday";
-//             break;
-//         case 1:
-//             day = "Monday";
-//             break;
-//         case 2:
-//             day = "Tuesday";
-//             break;
-//         case 3:
-//             day = "Wednesday";
-//             break;
-//         case 4:
-//             day = "Thursday";
-//             break;
-//         case 5:
-//             day = "Friday";
-//             break;
-//         case 6:
-//             day = "Saturday";
-//     }
-//     switch(dateMonth){
-//         case 0:
-//             month = "January";
-//             break;
-//         case 1:
-//             month = "February";
-//             break;
-//         case 2:
-//             month = "March";
-//             break;
-//         case 3:
-//             month = "April";
-//             break;
-//         case 4:
-//             month = "May";
-//             break;
-//         case 5:
-//             month = "June";
-//             break;
-//         case 6:
-//             month = "July";
-//             break;
-//         case 7:
-//             month = "August";
-//             break;
-//         case 8:
-//             month = "September";
-//             break;
-//         case 9:
-//             month = "October";
-//             break;
-//         case 10:
-//             month = "November";
-//             break;
-//         case 11:
-//             month = "December";
-//             break;  
-//     }
-//     const habit ={
-//         text: 'Sleep ',
-//         amountGot: `${amountGot}`,
-//         amountWanted: `${amountWanted}`,
-//         completed: false,
-//     }
-//     const result = `<li>
-//         <label>${habit.amountGot}/${habit.amountWanted} |
-//         <span>${habit.text} | ${day} ${month}</span></label>
-//     </li>`
-//     body.innerHTML = result;
-//     body.append(progressBar)
-// }
-
-// module.exports(addSleep);
