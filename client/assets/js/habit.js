@@ -126,11 +126,23 @@ async function sendToExercise() {
 }
 
 async function displayWater() {
+    const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
+
+    console.log(waterData);
+    const lastDrink = waterData[(waterData.length-1)]
+    console.log(lastDrink)
+
     const markup = `<div class="habit" id="waterHabit">
                         <i class="bi bi-droplet"></i>
                         <h2>Water</h2>
                         <div class="progress" id="water">
-                        <h3>Your progress so far:</h3>
+                        <h3>On ${(lastDrink.date).split('T')[0]} you drank:</h3>
+                        <div class='showDrink'>
+                        
+                        <h3 id='waterDrank'>${lastDrink.dailyValue}</h3>
+                        <i class="bi bi-water" id='waterIcon'></i>
+                        <h3>cup(s) of water</h3>
+                        </div>
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
