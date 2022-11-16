@@ -2,7 +2,12 @@ window.addEventListener('load', createDisplay)
 
 async function createDisplay() {
     const { user, sleepGoal, sleepTrackers, lastSleep } = await retrieveSleepData()
-    if (!sleepGoal){displayNewGoalForm(user)} else {
+    if (!sleepGoal){displayNewGoalForm(user)} 
+        else if (!lastSleep) {
+            displayGoal(sleepGoal)
+            displayStreak(sleepTrackers, sleepGoal)
+            displayAddTrackerButton(user)
+        } else {
         displayLatestSleep(sleepGoal, lastSleep)
         displayGoal(sleepGoal)
         displayStreak(sleepTrackers, sleepGoal)
@@ -22,27 +27,12 @@ async function retrieveSleepData() {
     }
 }
 
-// function displayAddSleepGoal (user) {
-//     const trackersSection = document.querySelector('div.trackers')
-    // const markup = `<div class="habit" id="sleepHabit">
-    //                     <i class="bi bi-alarm"></i>
-    //                     <h2>Sleep</h2>
-    //                     <div class="newGoal">
-    //                         <h1>+</h1>
-    //                         <h4>Start tracking sleep!</h4>
-    //                     </div>
-    //                 </div>`
-//     trackersSection.insertAdjacentHTML('afterbegin', markup)
-//     newGoalButton = document.querySelector('div.newGoal')
-//     newGoalButton.addEventListener('click', (user) => {displayNewGoalForm(user)})
-// }
-
-function displayNewGoalForm (user) {
+function displayNewGoalForm () {
     const goalSection = document.querySelector('div.trackers')
     goalSection.innerHTML = "";
-    const goalForm = `<form id="sleepForm">
-                        <input type="range" id="addSleep" name="addSleep" value="0" min="0" max="12" step="1" oninput="this.nextElementSibling.firstChild.value = this.value"></input>
-                        <label for="addSleep"><output>0</output> hours</label>
+    const goalForm = `<form id="goalForm">
+                        <input type="range" id="addGoal" name="addGoal" value="0" min="0" max="12" step="1" oninput="this.nextElementSibling.firstChild.value = this.value"></input>
+                        <label for="addGoal"><output>0</output> hours</label>
                         <input type="submit" id="submitGoal" value="Add Goal!">
                     </form>
                     <button id="backToHome">back</button>`
@@ -51,6 +41,31 @@ function displayNewGoalForm (user) {
     const button = document.querySelector('#backToHome')
     button.addEventListener('click', () => {window.location.assign('/client/homepage.html')})
 
+    const newGoalForm = document.querySelector('#goalForm')
+    newGoalForm.addEventListener('submit', submitGoal)
+}
+
+async function submitGoal (e) {
+    e.preventDefault;
+    const dailyGoal = e.target.addGoal.value
+    try {
+        const body = { "userId": user.id, 
+                        "habitId": 1, 
+                        "dailyGoal": dailyGoal, 
+                        "weeklyGoal":  dailyGoal*7,
+                        "goalUnits": "hours"}
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        }
+        const r = await fetch(`http://localhost:3000/goals`, options)
+        const data = await r.json()
+        if (data.err){ throw Error(data.err) }
+        window.location.reload();
+    } catch (err) {
+        console.warn(err);
+    }
 }
 
 function displayLatestSleep(sleepGoal, lastSleep) {
@@ -68,6 +83,7 @@ function displayLatestSleep(sleepGoal, lastSleep) {
 
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
+
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
     circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
 }
