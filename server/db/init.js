@@ -1,12 +1,7 @@
-const { Pool } = require("pg");
-const knex  = require('knex')
+const { Client } = require("pg");
 
-const config = require('../../knexfile')
-
-const dbConnect = knex(config.production)
-
-const db = new Pool({
+const db = new Client({
     connectionString: process.env.DATABASE_URL
-});
+}).connect();
 
-module.exports = {db, dbConnect};
+module.exports = {db};

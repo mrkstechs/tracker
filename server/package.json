@@ -7,7 +7,7 @@
     "test": "jest --watchAll",
     "start": "node server.js",
     "dev": "nodemon -L server",
-    "seed": "node server/db/seed",
+    "seed": "node server/db/migrations/migrations && node server/db/seed",
     "up": "bash ../_scripts/start.sh",
     "down": "bash ../_scripts/stop.sh",
     "remove": "bash ../_scripts/teardown.sh"
@@ -30,10 +30,11 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^2.3.0",
     "pg": "^8.8.0",
-    "postgres": "^3.3.1",
-    "knex": "2.3.0"
+    "postgres": "^3.3.1"
   }
 }
