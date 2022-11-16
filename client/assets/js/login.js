@@ -26,9 +26,9 @@ function showLogin () {
     form.insertAdjacentHTML('beforeend', markup);
 
     const registerButton = document.querySelector('#submitRegisterButton')
-    registerButton.addEventListener('submit', showRegister)
+    registerButton.addEventListener('click', showRegister)
     const loginButton = document.querySelector('#loginButton')
-    loginButton.addEventListener('submit', requestLogin)
+    loginButton.addEventListener('click', requestLogin)
 }
 
 function showRegister () {
@@ -68,7 +68,7 @@ function showRegister () {
     const backToLoginButton = document.querySelector('#backToLoginButton')
     backToLoginButton.addEventListener('click', showLogin)
     const submitRegisterButton = document.querySelector('#submitRegisterButton')
-    submitRegisterButton.addEventListener('submit', requestRegistration)
+    submitRegisterButton.addEventListener('click', requestRegistration)
 }
 
 
