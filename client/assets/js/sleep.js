@@ -1,9 +1,11 @@
-const progressSection = document.querySelector('div.goal')
 window.addEventListener('load', createDisplay)
 
 async function createDisplay() {
     const { sleepGoal, sleepTrackers, lastSleep } = await retrieveSleepData()
-    displaySleepProgress(sleepGoal, lastSleep, progressSection)
+    console.log(sleepGoal, sleepTrackers, lastSleep)
+    displaySleepProgress(sleepGoal, lastSleep)
+    displayGoal(sleepGoal)
+    displayStreak(sleepTrackers, sleepGoal)
 }
 
 async function retrieveSleepData() {
@@ -11,33 +13,59 @@ async function retrieveSleepData() {
     const sleepGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/1`)).json())[0]
     const sleepTrackers = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
     const lastSleep = sleepTrackers[(sleepTrackers.length)-1]
-    console.log(sleepGoal, sleepTrackers, lastSleep)
     return  { sleepGoal, sleepTrackers, lastSleep };
 }
 
-async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
+function displaySleepProgress(sleepGoal, lastSleep) {
+
+    const progressSection = document.querySelector('div.progress')
+
+
     const goalProgressDisplay = `<div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">? / 8 hours</span>
                                     </div>
                                 </div>`
     
-    postSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
+    progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
 
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
-
-    console.log(sleepGoal)
-    
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
-
     circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
 }
 
+function displayGoal(sleepGoal) {
+    const goalSection = document.querySelector('div.goal') 
+    const goal = document.createElement('h1')
+    goal.textContent = `${sleepGoal.dailyGoal}`
+    goalSection.append(goal, "hours / night")
+}
+
+function displayStreak(sleepTrackers, sleepGoal) {
+    const streakSection = document.querySelector('div.streak')
+    const streak = calculateStreak(sleepTrackers, sleepGoal);
+    const streakElement = document.createElement('h1');
+    streakElement.textContent = `${streak}`;
+    streakSection.append(streak);
+    
+
+}
+
+function calculateStreak(sleepTrackers, sleepGoal){
+    streak = 0;
+    sleepTrackers.forEach(tracker => {
+        if (tracker.dailyValue >= sleepGoal.dailyGoal){
+            streak++;
+        } else {
+            streak = 0;
+        }
+    })
+    return streak;
+}
 
 
-
-
+const logSleepSection = document.querySelector('div.logSleep')
 
 
 
