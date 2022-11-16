@@ -130,7 +130,49 @@ h3 {
     top: 5%;
 }
 
+#sleep{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    background-color: #57BD54;
+    align-items: center;
+}
 
+#sleepProgress{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 50px 0;
+    border-radius: 8px;
+    background-color: #57BD54;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.circular-progress {
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#f0ff 30deg, lightgrey 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: #57BD54;
+}
+
+.progress-value {
+    position: relative;
+
+}
 
 /* .sleepSection{
     border: 1px solid black;

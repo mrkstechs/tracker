@@ -33,7 +33,7 @@ describe('index.html', () => {
 
     describe('username label', () => {
         test('it has contains the word Username', () => {
-        const username = document.querySelecter('label#uname')
+        const username = document.querySelector('label#uname')
         expect(username).toBeTruthy();
         expect(username.textContent).toContain('Username')
         })
@@ -41,7 +41,7 @@ describe('index.html', () => {
 
     describe('password label', () => {
         test('it has contains the word Password', () => {
-        const password = document.querySelecter('label#pword')
+        const password = document.querySelector('label#pword')
         expect(password).toBeTruthy();
         expect(password.textContent).toContain('Password')
         })

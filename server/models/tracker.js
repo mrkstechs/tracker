@@ -60,7 +60,7 @@ module.exports = class Tracker {
     static findByUserAndHabit (userId, habitId) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2', [userId , habitId]);
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 ORDER BY date ASC', [userId , habitId]);
                 let trackers = result.rows.map(t => new Tracker(t));
                 res(trackers);
             } catch (err) {
@@ -72,7 +72,7 @@ module.exports = class Tracker {
     static findByUserHabitAndDate (userId, habitId, date) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 AND date = $3', [userId , habitId, date]);
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 AND date = $3 ORDER BY date ASC', [userId , habitId, date]);
                 let tracker = new Tracker(result.rows[0]);
                 res(tracker);
             } catch (err) {
