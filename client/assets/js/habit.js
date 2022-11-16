@@ -35,18 +35,19 @@ async function displayHabits () {
     sleepGoal = userTrackedGoals.find(habit => habit.id == 1)
     exerciseGoal = userTrackedGoals.find(habit => habit.id == 2)
     waterGoal = userTrackedGoals.find(habit => habit.id == 3)
-    if (sleepGoal) {
-        console.log("User is tracking sleep")
-        displaySleep(user, sleepGoal)
+    if (waterGoal) {
+        console.log("User is tracking water")
+        displayWater(user, waterGoal)
     }
     if (exerciseGoal) {
         console.log("User is tracking exercise")
         displayExercise(user, exerciseGoal)
     }
-    if (waterGoal) {
-        console.log("User is tracking water")
-        displayWater(user, waterGoal)
+    if (sleepGoal) {
+        console.log("User is tracking sleep")
+        displaySleep(user, sleepGoal)
     }
+
     // Needs add goal button if user has no goals
 }
 
