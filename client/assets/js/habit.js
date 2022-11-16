@@ -2,40 +2,8 @@ window.addEventListener('load', displayHabits)
 
 const habitSection = document.querySelector('#habits')
 
-// async function exPreview (user) {
-//     try {
-//         const response = await fetch(`http://localhost:3000/goals/${user}`)
-//         const data = await response.json();
-//         const exerciseGoal = data.filter(obj => obj.habitId == 2)
-//         const recommendedGoals = await fetch('http://localhost:3000/habits').then(data => data.json()).then(goals => goals.find(habit => habit.id == 2))
-//         console.log(`User's current goal/progress:`, exerciseGoal)
-//         console.log(`Recommended goal/progress:`, recommendedGoals)
-//     } catch (err) {
-//         console.warn(err);
-//     }
-// }
 
-function getUserGoals(user) {
-    fetch(`http://localhost:3000/goals/${user}`)
-    .then(r => r.json())
-    .then(showExercise)
-    .catch(console.warn)
-}
-
-function showExercise () {
-    const goal = document.querySelector('#exercise')
-    let goalNumber = document.createElement('h4')
-    goalNumber.id = "goalnumber"
-    goal.append(goalNumber) 
-}
-
-
-
-
-
-
-
-async function slePreview (user) {
+async function exPreview (user) {
     try {
         const response = await fetch(`http://localhost:3000/goals/${user}`)
     } catch {
@@ -54,6 +22,13 @@ async function slePreview (user) {
 async function getUser() {
     user = await JSON.parse(localStorage.getItem("user"));
     return user
+}
+
+async function changeTitle(){
+    const user = await getUser();
+    const title = document.querySelector('h1');
+    title.textContent = `Hello ${user.firstName}, welcome to your account.`
+    title.style.color = '#CFF5E7'
 }
 
 async function displayHabits () {
@@ -84,7 +59,7 @@ async function displaySleep(user, sleepGoal) {
     const lastSleep = sleepData[(sleepData.length-1)]
     console.log(lastSleep)
     
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="sleepHabit">
                         <i class="bi bi-alarm"></i>
                         <h2>Sleep</h2>
                         <div class="progress" id="sleep">
@@ -93,22 +68,38 @@ async function displaySleep(user, sleepGoal) {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const progressSection = document.querySelector('#sleep')
+    displaySleepProgress(sleepGoal, lastSleep, progressSection)
     
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
+
+    
+
+    
+} 
+
+async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
     const goalProgressDisplay = `<div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">7/8 hours</span>
                                     </div>
                                 </div>`
-    const progressSection = document.querySelector('#sleep')
-    progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
     
+    postSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
+
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
     
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
-    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`
-} 
+    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
+}
+
+async function sendToSleep() {
+    window.location.assign('/client/sleep.html')
+}
 
 async function displayExercise() {
     const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
@@ -128,22 +119,48 @@ async function displayExercise() {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const exerciseCard = document.querySelector('#exerciseHabit')
+    exerciseCard.addEventListener('click', sendToExercise)
+
+}
+
+async function sendToExercise() {
+    window.location.assign('/client/exercise.html')
 }
 
 
 
 
 async function displayWater() {
-    const watData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
+    const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
 
-    const markup = `<div class="habit">
+    console.log(waterData);
+    const lastDrink = waterData[(waterData.length-1)]
+    console.log(lastDrink)
+
+    const markup = `<div class="habit" id="waterHabit">
                         <i class="bi bi-droplet"></i>
                         <h2>Water</h2>
                         <div class="progress" id="water">
-                        <h3>Your progress so far:</h3>
+                        <h3>On ${(lastDrink.date).split('T')[0]} you drank:</h3>
+                        <div class='showDrink'>
+                        
+                        <h3 id='waterDrank'>${lastDrink.dailyValue}</h3>
+                        <i class="bi bi-water" id='waterIcon'></i>
+                        <h3>cup(s) of water</h3>
+                        </div>
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const waterCard = document.querySelector('#waterHabit')
+    waterCard.addEventListener('click', sendToWater)
 }
 
-// exPreview(1)
+async function sendToWater() {
+    window.location.assign('/client/water.html')
+}
+
+exPreview(1)
+changeTitle()
