@@ -9,8 +9,12 @@ ENV PGHOSTADDR=postgres://cshbrqjfrocjuu:e2718e620019ff67091b8a8bd0a1c72ae9b075f
 ENV PGPORT=5432
 ENV SECRET_PASSWORD=1poafsd8fahj2!F?Aefcv35
 
+COPY ./server/package.json .
+
+RUN npm install
+
 COPY . .
 
-RUN npm install && npm run seed
+RUN npm run seed
 
 CMD ["node", "./server/index.js"]
