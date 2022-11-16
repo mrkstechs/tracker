@@ -8,7 +8,7 @@ const db = new Client({
     database: process.env.PGDATABASE,
     ssl: true
 })
-
+console.log(process.env.PGHOST, process.env.PORT)
 db.connect(err => err ? console.error('connection error!', err.stack) : console.log('postgres db conntected!'))
 
 module.exports = {db};
