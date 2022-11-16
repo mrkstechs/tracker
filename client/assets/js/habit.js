@@ -112,7 +112,10 @@ async function displaySleep(user, sleepGoal) {
 
 async function displayExercise() {
     const exeData = await (await fetch(`http://localhost:3000/trackers/${user.id}/2`)).json()
-    const totalHours = exeData
+    const totalHours = exeData.dailyValue.reduce((accumulator, value) => {
+        return accumulator + value;
+    }, 0);
+    console.log(totalHours) 
 
     const markup = `<div class="habit">
                         <i class="bi bi-graph-up"></i>

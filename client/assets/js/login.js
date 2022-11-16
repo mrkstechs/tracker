@@ -2,7 +2,7 @@ const form = document.querySelector('form')
 const loginButton = document.querySelector('#loginButton')
 const registerButton = document.querySelector('#registerButton')
 
-loginButton.addEventListener('click', requestLogin)
+// loginButton.addEventListener('click', requestLogin)
 registerButton.addEventListener('click', showRegister)
 
 
@@ -25,8 +25,8 @@ function showLogin () {
                 </div>`
     form.insertAdjacentHTML('beforeend', markup);
 
-    const registerButton = document.querySelector('#submitRegisterButton')
-    registerButton.addEventListener('submit', showRegister)
+    // const registerButton = document.querySelector('#submitRegisterButton')
+    // registerButton.addEventListener('submit', showRegister)
     const loginButton = document.querySelector('#loginButton')
     loginButton.addEventListener('submit', requestLogin)
 }
