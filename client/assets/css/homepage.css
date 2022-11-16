@@ -288,3 +288,17 @@ h3 {
     z-index: 1;
 }
 
+#waterDrank{
+    color: white;
+    font-size: 80px;
+    margin-bottom: 0px;
+}
+
+.showDrink{
+    margin-top: -40px;
+}
+
+#waterIcon{
+    z-index: 1;
+    font-size: 50px;
+}
