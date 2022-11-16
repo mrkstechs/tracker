@@ -65,17 +65,26 @@ async function displaySleep(user, sleepGoal) {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const progressSection = document.querySelector('#sleep')
+    displaySleepProgress(sleepGoal, lastSleep, progressSection)
     
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
+
+    
+
+    
+} 
+
+async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
     const goalProgressDisplay = `<div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">7/8 hours</span>
                                     </div>
                                 </div>`
-    const progressSection = document.querySelector('#sleep')
-    progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
     
-    const sleepCard = document.querySelector('#sleepHabit')
-    sleepCard.addEventListener('click', sendToSleep)
+    postSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
 
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
@@ -83,7 +92,7 @@ async function displaySleep(user, sleepGoal) {
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
     circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
-} 
+}
 
 async function sendToSleep() {
     window.location.assign('/client/sleep.html')
