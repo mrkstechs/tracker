@@ -69,6 +69,9 @@ function displayNewSleepGoal(user) {
                 </div>
             </div>`;
     habitSection.insertAdjacentHTML('afterbegin', markup)
+    
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
 }
 
 async function displaySleep(user, sleepGoal) {
