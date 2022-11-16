@@ -2,6 +2,7 @@ window.addEventListener('load', displayHabits)
 
 const habitSection = document.querySelector('#habits')
 
+
 async function exPreview (user) {
     try {
         const response = await fetch(`http://localhost:3000/goals/${user}`)
@@ -26,6 +27,13 @@ async function exPreview (user) {
 async function getUser() {
     user = await JSON.parse(localStorage.getItem("user"));
     return user
+}
+
+async function changeTitle(){
+    const user = await getUser();
+    const title = document.querySelector('h1');
+    title.textContent = `Hello ${user.firstName}, welcome to your account.`
+    title.style.color = '#CFF5E7'
 }
 
 async function displayHabits () {
@@ -136,3 +144,4 @@ async function sendToWater() {
 }
 
 exPreview(1)
+changeTitle()
