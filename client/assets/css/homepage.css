@@ -160,7 +160,6 @@ h5.exercisehour {
 #sleep{
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
     background-color: #57BD54;
     align-items: center;
 }
@@ -291,6 +290,13 @@ h5.exercisehour {
 
 
 
+.progress{
+    border: none;
+}
+
+.habit:hover{
+    cursor: pointer;
+}
 
 
 .waterpop {
@@ -316,3 +322,28 @@ h5.exercisehour {
     z-index: 1;
 }
 
+#waterDrank{
+    color: white;
+    font-size: 80px;
+    margin-bottom: 0px;
+}
+
+.showDrink{
+    width: 125px;
+    height: 125px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -45px;
+    background-color: #083AA9;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    border-radius: 50%;
+}
+
+#waterIcon{
+    z-index: 1;
+    font-size: 50px;
+}
+
+#waterText{
+    margin-top: -15px;
+}

@@ -147,9 +147,9 @@ async function displayWater() {
                         <div class='showDrink'>
                         
                         <h3 id='waterDrank'>${lastDrink.dailyValue}</h3>
-                        <i class="bi bi-water" id='waterIcon'></i>
-                        <h3>cup(s) of water</h3>
                         </div>
+                        <i class="bi bi-water" id='waterIcon'></i>
+                        <h3 id='waterText'>cup(s) of water</h3>
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
