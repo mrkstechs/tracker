@@ -7,7 +7,7 @@ server.use(express.json());
 
 const apiRoutes =  require('./routes/api')
 
-server.use(express.static(path.resolve('./client/')))
+server.use(express.static(path.resolve('./server/client/')))
 server.use('/api', apiRoutes)
 
 
