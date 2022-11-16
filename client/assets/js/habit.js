@@ -75,15 +75,14 @@ async function displaySleep(user, sleepGoal) {
     progressSection.insertAdjacentHTML('beforeend',goalProgressDisplay)
     
     const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
 
     const circularProgress = document.querySelector(".circular-progress")
     const progressValue = document.querySelector(".progress-value")
     
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
-    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`
-    
-    sleepCard.addEventListener('click', sendToSleep)
+    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
 } 
 
 async function sendToSleep() {
@@ -91,7 +90,7 @@ async function sendToSleep() {
 }
 
 async function displayExercise() {
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="exerciseHabit">
                         <i class="bi bi-graph-up"></i>
                         <h2>Exercise</h2>
                         <div class="progress" id="exercise">
@@ -99,10 +98,18 @@ async function displayExercise() {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const exerciseCard = document.querySelector('#exerciseHabit')
+    exerciseCard.addEventListener('click', sendToExercise)
+
+}
+
+async function sendToExercise() {
+    window.location.assign('/client/exercise.html')
 }
 
 async function displayWater() {
-    const markup = `<div class="habit">
+    const markup = `<div class="habit" id="waterHabit">
                         <i class="bi bi-droplet"></i>
                         <h2>Water</h2>
                         <div class="progress" id="water">
@@ -110,6 +117,13 @@ async function displayWater() {
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
+
+    const waterCard = document.querySelector('#waterHabit')
+    waterCard.addEventListener('click', sendToWater)
+}
+
+async function sendToWater() {
+    window.location.assign('/client/water.html')
 }
 
 exPreview(1)
