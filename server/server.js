@@ -7,10 +7,10 @@ server.use(express.json());
 
 const apiRoutes =  require('./routes/api')
 
-server.use(express.static(path.resolve('./server/client/')))
+server.use(express.static(path.resolve('./client/')))
 server.use('/api', apiRoutes)
 
 
-server.get('/', (req, res) => res.sendFile(path.resolve('./server/client/index.html')))
+server.get('/', (req, res) => res.sendFile(path.resolve('./client/index.html')))
 
 module.exports = server;
