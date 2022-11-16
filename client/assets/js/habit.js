@@ -41,16 +41,37 @@ async function displayHabits () {
     if (sleepGoal) {
         console.log("User is tracking sleep")
         displaySleep(user, sleepGoal)
+    } else {
+        displayNewSleepGoal(user)
     }
     if (exerciseGoal) {
         console.log("User is tracking exercise")
         displayExercise(user, exerciseGoal)
+    } else {
+        displayNewExerciseGoal(user)
     }
     if (waterGoal) {
         console.log("User is tracking water")
         displayWater(user, waterGoal)
+    } else {
+        displayNewWaterGoal(user)
     }
     // Needs add goal button if user has no goals
+}
+
+function displayNewSleepGoal(user) {
+    markup = `<div class="habit" id="sleepHabit">
+                <i class="bi bi-alarm"></i>
+                <h2>Sleep</h2>
+                <div class="newGoal">
+                    <h1>+</h1>
+                    <h4>Start tracking sleep!</h4>
+                </div>
+            </div>`;
+    habitSection.insertAdjacentHTML('afterbegin', markup)
+    
+    const sleepCard = document.querySelector('#sleepHabit')
+    sleepCard.addEventListener('click', sendToSleep)
 }
 
 async function displaySleep(user, sleepGoal) {
@@ -58,9 +79,8 @@ async function displaySleep(user, sleepGoal) {
     console.log(sleepData)
     const lastSleep = sleepData[(sleepData.length-1)]
     console.log(lastSleep)
-    
+                
     const markup = `<div class="habit" id="sleepHabit">
-                        <i class="bi bi-alarm"></i>
                         <h2>Sleep</h2>
                         <div class="progress" id="sleep">
                         <h3>Last logged sleep:</h3>
@@ -107,15 +127,15 @@ async function displayExercise() {
     const totalHours = exeData.dailyGoal
     console.log(totalHours) 
 
-    const markup = `<div class="habit">
-                        <i class="bi bi-graph-up"></i>
+    const markup = `<div class="habit" id="exerciseHabit">
+                        
                         <h2>Exercise</h2>
                         <div class="progress" id="exercise">
                             <h3>Your goal today is to exercise</h3>
                             <div id="numbercircle">
                                 <h4 class="exercisegoal">${totalHours}</h4>
                             </div>
-                            <h5 class="exercisehour">hour(s)</h5>
+                            <h3 class="exercisehour">hour(s)</h3>
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
@@ -140,7 +160,6 @@ async function displayWater() {
     console.log(lastDrink)
 
     const markup = `<div class="habit" id="waterHabit">
-                        <i class="bi bi-droplet"></i>
                         <h2>Water</h2>
                         <div class="progress" id="water">
                         <h3>On ${(lastDrink.date).split('T')[0]} you drank:</h3>

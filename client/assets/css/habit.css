@@ -79,6 +79,9 @@ a#selected {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 5em auto;
     width: 60vw;
     height: 75vh;
@@ -90,6 +93,10 @@ a#selected {
     display: flex;
     justify-content: space-evenly;
     margin: 2em;
+}
 
+.trackers div {
+    display: flex;
+    flex-direction: column;
 }
 
