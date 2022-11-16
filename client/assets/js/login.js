@@ -71,15 +71,6 @@ function showRegister () {
     submitRegisterButton.addEventListener('click', requestRegistration)
 }
 
-
-function clearForms () {
-    // form.childNodes.forEach(child => {
-    //     console.log(child)
-    //     if (child == "#text") {child.remove()}
-    //     else if (child.classList.contains("account")) {child.remove()}})
-};
-
-
 async function requestLogin(e){
     e.preventDefault();
     const form = document.querySelector('form')
