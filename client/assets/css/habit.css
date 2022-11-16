@@ -16,6 +16,10 @@ li, a, button {
     text-decoration: none;
 }
 
+i {
+    font-size: 20px;
+}
+
 header {
     background-color: #1F4AAC ;
     display: flex;
@@ -23,6 +27,7 @@ header {
     align-items: center;
     height: 30px;
     padding: 20px 5%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
 }
 
 #logo {

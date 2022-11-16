@@ -130,6 +130,33 @@ h3 {
     top: 10%;
 }
 
+div#numbercircle {
+    width: 125px;
+    height: 125px;
+    background-color: #083AA9;
+    margin: 1em auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 50%;
+}
+
+h4.exercisegoal {
+    position: relative;
+    top: 25%;
+    font-size: 50px;
+    text-align: center;
+    color: #CFF5E7;
+    
+    
+
+
+}
+
+h5.exercisehour {
+    margin: 0.5em auto;
+    font-size: 16px;
+    text-align: center;
+}
+
 #sleep{
     display: flex;
     flex-direction: column;
@@ -143,15 +170,16 @@ h3 {
     flex-direction: column;
     width: 200px;
     border-radius: 8px;
-    background-color: #57BD54;
+    background-color: #083AA9;
     align-items: center;
     row-gap: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .circular-progress {
     position: relative;
-    height: 150px;
-    width: 150px;
+    height: 125px;
+    width: 125px;
     border-radius: 50%;
     background: conic-gradient(#f0ff 30deg, lightgrey 0deg);
     display: flex;
@@ -165,7 +193,7 @@ h3 {
     height: 110px;
     width: 110px;
     border-radius: 50%;
-    background-color: #57BD54;
+    background-color: #083AA9;
 }
 
 .progress-value {

@@ -6,13 +6,8 @@ const habitSection = document.querySelector('#habits')
 async function exPreview (user) {
     try {
         const response = await fetch(`http://localhost:3000/goals/${user}`)
-        const data = await response.json();
-        const execiseGoal = data.filter(obj => obj.habitId == 2)
-        const recommendedGoals = await fetch('http://localhost:3000/habits').then(data => data.json()).then(goals => goals.find(habit => habit.id == 2))
-        console.log(`Users current goal/progress:`, execiseGoal)
-        console.log(`Recommended goal/progress:`, recommendedGoals)
-    } catch (err) {
-        console.warn(err);
+    } catch {
+
     }
 }
 
@@ -107,11 +102,20 @@ async function sendToSleep() {
 }
 
 async function displayExercise() {
-    const markup = `<div class="habit" id="exerciseHabit">
+    const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
+    console.log(exeData)
+    const totalHours = exeData.dailyGoal
+    console.log(totalHours) 
+
+    const markup = `<div class="habit">
                         <i class="bi bi-graph-up"></i>
                         <h2>Exercise</h2>
                         <div class="progress" id="exercise">
-                        <h3>Your progress so far:</h3>
+                            <h3>Your goal today is to exercise</h3>
+                            <div id="numbercircle">
+                                <h4 class="exercisegoal">${totalHours}</h4>
+                            </div>
+                            <h5 class="exercisehour">hour(s)</h5>
                         </div>
                     </div>`
     habitSection.insertAdjacentHTML('afterbegin', markup)
@@ -124,6 +128,9 @@ async function displayExercise() {
 async function sendToExercise() {
     window.location.assign('/client/exercise.html')
 }
+
+
+
 
 async function displayWater() {
     const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
