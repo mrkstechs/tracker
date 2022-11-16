@@ -7,7 +7,7 @@
     "test": "jest --watchAll",
     "start": "node server.js",
     "dev": "nodemon -L server",
-    "seed": "node db/seed",
+    "seed": "node server/db/seed",
     "up": "bash ../_scripts/start.sh",
     "down": "bash ../_scripts/stop.sh",
     "remove": "bash ../_scripts/teardown.sh"
