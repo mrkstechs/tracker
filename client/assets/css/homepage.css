@@ -3,7 +3,8 @@
 
 body {
     box-sizing: border-box;
-    background: #083AA9;
+    background-image: linear-gradient( 135deg, #6B73FF 10%, #2631fd 100%);
+
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -44,7 +45,7 @@ header {
 }
 
 .navlinks li a {
-    color: white;
+    color: #CFF5E7;
     transition: 0.5s;
 }
 
@@ -89,14 +90,45 @@ div.brand {
     color: #CFF5E7;
 }
 
+.icons {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.icon {
+    background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+    margin: 0 auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.icon i {
+    position: relative;
+    font-size: 40px;
+    top: 25%;
+}
+
+#one {
+    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+}
+
+#three {
+    background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);
+}
+
 
 
 #habits{
     display: flex;
     text-align: center;
     justify-content: space-around;
-    margin-top: 100px;
-    background-color: #083AA9;
+    /* margin-top: 100px; */
+    
 }
 
 .habit {
@@ -110,15 +142,16 @@ div.brand {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.habit i {
-    position: relative;
-    top: 5%;
-    font-size: 25px;
-    
+#waterHabit {
+    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+}
+
+#sleepHabit {
+    background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);
 }
 
 .progress {
-    background-color: #57BD54;
+    background-image: linear-gradient( 135deg, #6B73FF 10%, #000DFF 100%);
     position: relative;
     width: 90%;
     height: 70%; 
@@ -128,25 +161,28 @@ div.brand {
 }
 
 h3 {
+    color: #CFF5E7;
     position: relative;
     top: 10%;
 }
 
 div#numbercircle {
+    position: relative;
     width: 125px;
     height: 125px;
-    background-color: #083AA9;
-    margin: 1em auto;
+    background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+    margin: 3em auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 50%;
 }
 
 h4.exercisegoal {
     position: relative;
-    top: 25%;
-    font-size: 50px;
+    top: 12%;
+    font-size: 80px;
     text-align: center;
-    color: #CFF5E7;
+    color: black;
+    margin: 10px auto;
     
     
 
@@ -172,7 +208,7 @@ h5.exercisehour {
     flex-direction: column;
     width: 200px;
     border-radius: 8px;
-    background-color: #083AA9;
+    background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);
     align-items: center;
     row-gap: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -187,6 +223,7 @@ h5.exercisehour {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 10px 0;
 }
 
 .circular-progress::before {
@@ -279,7 +316,7 @@ h5.exercisehour {
     border: none;
     text-align: center;
     background-color: #57BD54;
-    color: white;
+    color: #CFF5E7;
     font-family: "Work Sans";
     transition: 0.5s;
 }
@@ -295,7 +332,7 @@ h5.exercisehour {
 
 
 
-.waterpop {
+/* .waterpop {
     width: 400px;
     background-color: #083AA9;
     position: absolute;
@@ -316,6 +353,24 @@ h5.exercisehour {
 .closewater {
     color: black;
     z-index: 1;
+} */
+
+#waterDrank{
+    position: relative;
+    top: 12%;
+    color: black;
+    font-size: 80px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.showDrink{
+    position: relative;
+    width: 125px;
+    height: 125px;
+    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+    margin: 3em auto;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }
 
 .newGoal {
