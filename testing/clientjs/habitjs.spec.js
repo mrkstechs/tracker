@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 const fs = require("fs");
 const path = require('path');
 const html = fs.readFileSync(path.resolve("../client/index.html"), 'utf8');
@@ -29,7 +30,7 @@ describe("Hompeage", () => {
     })
 
     beforeEach(() => {      
-        window.document.body.innerHTML = html
+        document.documentElement.innerHTML = html.toString();
         })
 
     afterAll(() => jest.resetAllMocks())
@@ -40,25 +41,6 @@ describe("Hompeage", () => {
                expect(user).toBeTruthy();
         })
     })
-
-    // describe('Requests', () => {
-    //     test('It fetches userTrackedGoals', () => {
-
-    //     }); 
-
-    //     test('It fetches sleepData', () => {
-
-    //     });
-
-    //     test('It fetches exeData', () => {
-            
-    //     })
-        
-    //     test('It fetches waterData', () => {
-            
-    //     })
-        
-    // })
 
     describe('Relocation functions', () => {
         const {location} = window;
@@ -142,10 +124,44 @@ describe("Hompeage", () => {
                 expect(displayWater).toHaveBeenCalled
             })
         })
+    
+    })
 
+    describe('Display Functions', () => {
 
+        beforeEach(() => {      
+            document.documentElement.innerHTML = html.toString();
+            })
+            
+        beforeAll(() => {
+            fetch = jest.fn(() =>
+            Promise.resolve({
+              json: () => Promise.resolve([{date: "2022-11-17", dailyValue: 5}]),
+            })
+          )
+        });
+
+        test('Correctly display sleep card', () => {
+            sleepGoal = {dailyGoal: 8}
+            user = {id: 1}
+            displaySleep(user, sleepGoal)
+            const habitSection = document.querySelector('#habits')
+            expect(habitSection).toEqual(`<div id="habits">
+                                            <div class="habit" id="sleepHabit">
+                                                <h2>Sleep</h2>
+                                                <div class="progress" id="sleep">
+                                                    <h3>Last logged sleep:</h3>
+                                                    <h4>2022-11-17</h4>
+                                                    <div id="sleepProgress">
+                                                        <div class="circular-progress">
+                                                            <span class="progress-value">5 / 8 hours</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`)
+        })
 
 
     })
-
 })
