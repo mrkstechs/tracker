@@ -26,9 +26,9 @@ function showLogin () {
     form.insertAdjacentHTML('beforeend', markup);
 
     const registerButton = document.querySelector('#submitRegisterButton')
-    registerButton.addEventListener('click', showRegister)
+    registerButton.addEventListener('submit', showRegister)
     const loginButton = document.querySelector('#loginButton')
-    loginButton.addEventListener('click', requestLogin)
+    loginButton.addEventListener('submit', requestLogin)
 }
 
 function showRegister () {
@@ -68,8 +68,17 @@ function showRegister () {
     const backToLoginButton = document.querySelector('#backToLoginButton')
     backToLoginButton.addEventListener('click', showLogin)
     const submitRegisterButton = document.querySelector('#submitRegisterButton')
-    submitRegisterButton.addEventListener('click', requestRegistration)
+    submitRegisterButton.addEventListener('submit', requestRegistration)
 }
+
+
+function clearForms () {
+    // form.childNodes.forEach(child => {
+    //     console.log(child)
+    //     if (child == "#text") {child.remove()}
+    //     else if (child.classList.contains("account")) {child.remove()}})
+};
+
 
 async function requestLogin(e){
     e.preventDefault();
@@ -80,7 +89,7 @@ async function requestLogin(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/users/login`, options)
+        const r = await fetch(`http://localhost:3000/api/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);
@@ -98,7 +107,7 @@ async function requestRegistration(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/users/register`, options)
+        const r = await fetch(`http://localhost:3000/api/register`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         requestLogin(e);
@@ -108,8 +117,9 @@ async function requestRegistration(e) {
 }
 
 function login(data){
-    localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
-
-    window.location.assign("/client/homepage.html") 
+    window.location.assign("/client/homepage.html")
+    // const message = document.createElement('p');
+    // message.textContent = "Succesful login";
+    // form.append(message);
 }

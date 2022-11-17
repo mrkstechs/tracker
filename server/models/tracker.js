@@ -9,11 +9,11 @@ module.exports = class Tracker {
         this.userId = data.user_id
     }
 
-    static create ({ habitId, dailyValue, date, userId}){
+    static create ({ habitId, dailyValue, userId}){
         return new Promise(async (res, rej) => {
             try {
                 let result = await db.query(`INSERT INTO tracker (habit_id, habit_daily_value, date, user_id)
-                                                VALUES ($1, $2, $3, $4) RETURNING *;`,[habitId, dailyValue, date, userId]);
+                                                VALUES ($1, $2, CURRENT_DATE, $3) RETURNING *;`,[habitId, dailyValue, userId]);
                 let tracker = new Tracker(result.rows[0]);
                 res(tracker)
             } catch (err) {
@@ -34,6 +34,17 @@ module.exports = class Tracker {
         });
     };
     
+    static updateDailyValue (trackerId, newDailyValue){
+        return new Promise (async (res, rej) => {
+            try {
+                let updatedData = await db.query('UPDATE tracker SET habit_daily_value = $1 WHERE id = $2', [ newDailyValue, trackerId ])
+                res(updatedData)
+            } catch (err) {
+                rej(`Unable to update value: ${err}`)
+            }
+        })
+    }
+
     static findByUserId (userId) {
         return new Promise (async (res, rej) => {
             try {
@@ -49,9 +60,21 @@ module.exports = class Tracker {
     static findByUserAndHabit (userId, habitId) {
         return new Promise (async (res, rej) => {
             try {
-                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2', [userId , habitId]);
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 ORDER BY date ASC', [userId , habitId]);
                 let trackers = result.rows.map(t => new Tracker(t));
                 res(trackers);
+            } catch (err) {
+                rej(`No trackers found for this user and habit: ${err}`)
+            }
+        })
+    }
+
+    static findByUserHabitAndDate (userId, habitId, date) {
+        return new Promise (async (res, rej) => {
+            try {
+                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 AND date = $3 ORDER BY date ASC', [userId , habitId, date]);
+                let tracker = new Tracker(result.rows[0]);
+                res(tracker);
             } catch (err) {
                 rej(`No trackers found for this user and habit: ${err}`)
             }

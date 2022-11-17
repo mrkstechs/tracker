@@ -6,28 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/homepage.css">
     <script defer src="assets/js/homepage.js"></script>
+    <script defer src="assets/js/habit.js"></script>
     <title>HabitHelper</title>
 </head>
 <body>
+    <header>
+        <h2 id="logo">HabitHelper</h2>
+        <nav>
+            <ul class="navlinks">
+                <li><a href="./homepage.html" id="selected"><i class="bi bi-house"></i>&nbspHome</a></li>
+                <li><a href="./water.html"><i class="bi bi-droplet"></i>&nbspWater</a></li>
+                <li><a href="./exercise.html"><i class="bi bi-heart-pulse"></i>&nbspExercise</a></li>
+                <li><a href="./sleep.html"><i class="bi bi-alarm"></i>&nbspSleep</a></li>
+            </ul>
+        </nav>
+        <!-- <a href="./profilepage.html" class="logout"><button>Profile</button></a> -->
+        <a href="#" class="logout"><button><i class="bi bi-box-arrow-right"></i>&nbspLogout</button></a>
+    </header>
     <div class="brand">
-        <h1>Welcome to <span class="titlecolor">HabitHelper.</span></h1>
-        <h3><i class="bi bi-alarm"></i><i class="bi bi-droplet"></i><i class="bi bi-graph-up"></i></h3>
+        <h1><span class="titlecolor">Your Habit Tracking.</span></h1>
+    </div>
+    
+    <div class="icons">
+        <div class="icon" id="one">
+            <i class="bi bi-droplet"></i>
+        </div>
+        <div class="icon" id="two">
+            <i class="bi bi-heart-pulse"></i>
+        </div>
+        <div class="icon" id="three">
+            <i class="bi bi-alarm"></i>
+        </div>
     </div>
     <div id="habits">
-        <div class="habit">
-            <button id="sleepButton">SLEEP</button>
-        </div>
-        <div class="habit">
-            <button id="exerciseButton">EXERCISE</button>
-        </div>
-        <div class="habit" onclick="openWater()">
-            <button id="waterButton">WATER</button>
-        </div>
+        
+
+
     </div>
 
-    <div class="waterpop">
-        <button type="button" id="closewater" onclick="closeWater()">Close</button>
-    </div>
+    
 
 </body>
 </html>

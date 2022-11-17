@@ -5,7 +5,6 @@ const User = require('../models/user');
 async function login (req, res) {
     try {
         const user = await User.findByUsername(req.body.username)
-        console.log(user)
         if(!user){throw new Error('No user with this username')}
         const authed = await bcrypt.compare(req.body.password, user.password);
         console.log(user)
@@ -13,7 +12,8 @@ async function login (req, res) {
         if (!!authed){
             res.status(200).json({
                 succes: true, 
-                token: await createToken(user)
+                token: await createToken(user),
+                user: user
             })
         } else {
             throw new Error('User could not be authenticated')  
@@ -40,15 +40,18 @@ async function createToken(userData){
 
 async function register (req, res) {
     try {
+        console.log(req.body)
         const salt = await bcrypt.genSalt(12);
         const hashed = await bcrypt.hash(req.body.password, salt)
         const {email, username} = req.body
+        console.log(username)
         const userExist = await User.checkIfExists(email, username)
         if(userExist){
             res.status(302).json({user: userExist})
         } else {
             await User.create({...req.body, password: hashed})
             res.status(201).json({msg: 'User created'})
+            console.log("User created")
         }
     } catch (error) {
         res.status(500).json({ error })
