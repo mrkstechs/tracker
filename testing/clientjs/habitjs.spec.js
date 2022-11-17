@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
 const fs = require("fs");
 const path = require('path');
-const html = fs.readFileSync(path.resolve("../client/index.html"), 'utf8');
+const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
 
@@ -132,7 +132,7 @@ describe("Hompeage", () => {
         beforeEach(() => {      
             document.documentElement.innerHTML = html.toString();
             })
-            
+
         beforeAll(() => {
             fetch = jest.fn(() =>
             Promise.resolve({
@@ -144,22 +144,10 @@ describe("Hompeage", () => {
         test('Correctly display sleep card', () => {
             sleepGoal = {dailyGoal: 8}
             user = {id: 1}
+            const habitSection = document.querySelector('#waterHabit')
             displaySleep(user, sleepGoal)
-            const habitSection = document.querySelector('#habits')
-            expect(habitSection).toEqual(`<div id="habits">
-                                            <div class="habit" id="sleepHabit">
-                                                <h2>Sleep</h2>
-                                                <div class="progress" id="sleep">
-                                                    <h3>Last logged sleep:</h3>
-                                                    <h4>2022-11-17</h4>
-                                                    <div id="sleepProgress">
-                                                        <div class="circular-progress">
-                                                            <span class="progress-value">5 / 8 hours</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>`)
+            const date = document.querySelector('div.sleep h4')
+            expect(habitSection).toEqual("2022-11-17")
         })
 
 
