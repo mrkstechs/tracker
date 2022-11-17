@@ -15,6 +15,6 @@ server.use('/api', apiRoutes)
 server.get('/', (req, res) => res.send('Accessing HabitHelper backend'))
 
 
-app.listen(port, () => console.log(`Express now departing from port ${port}!`))
+server.listen(port, () => console.log(`Express now departing from port ${port}!`))
 
 module.exports = server;
