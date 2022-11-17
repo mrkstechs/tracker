@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --setupFiles ./tests/integration/config.js --watchAll --detectOpenHandles --runInBand --verbose",
+    "coverage": "jest --setupFiles ./tests/integration/config.js --coverage",
     "start": "node server.js",
     "dev": "nodemon -L server",
     "seed": "node db/seed",
