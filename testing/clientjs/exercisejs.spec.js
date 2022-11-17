@@ -38,22 +38,40 @@ describe("Exercise page", () => {
     describe('Display', () => {
         
         describe('User has no goals', () => {
-            test('Displays new goal form', () => {
+            test('Calls new goal form', () => {
                 expect(displayNewGoalForm).toHaveBeenCalled()
             })
         })
 
         describe('User has goal but no trackers', () => {
-            test('Displays add tracker, goal and streak but not latest exercise', () => {
+            test('Calls add tracker, goal and streak but not latest exercise', () => {
 
             })
         })
 
         describe('User has goal and trackers', () => {
-            test('Displays add tracker, goal, streak and latest exercise', () => {
+            test('Calls add tracker, goal, streak and latest exercise', () => {
 
             })
         }) 
+
+        describe('Items correctly displayed', () => {
+            test('New goal form correctly added on page', () => {
+
+            })
+            test('New tracker button correctly added on page', () => {
+
+            })
+            test('New tracker form correctly added on page', () => {
+
+            })
+            test('Display goal correctly added on page', () => {
+
+            })
+            test('Streak correctly added on page', () => {
+
+            })
+        })
     })
 
     describe('Exercise data', () => {
