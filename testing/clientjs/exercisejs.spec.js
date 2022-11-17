@@ -7,7 +7,7 @@ const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
 
-const { getUser, changeTitle, displayHabits, displayNewSleepGoal, displayNewExerciseGoal, displayNewWaterGoal, displaySleep, displaySleepProgress, sendToSleep, displayExercise, sendToExercise, displayWater, sendToWater } = require(path.resolve("../client/assets/js/habit.js"))
+const {  } = require(path.resolve("../client/assets/js/exercise.js"))
 
 global.localStorage = {
     
