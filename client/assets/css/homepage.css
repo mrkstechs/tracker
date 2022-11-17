@@ -52,13 +52,13 @@ header {
 .navlinks li a {
     color: #CFF5E7;
     transition: 0.5s;
-    border-bottom:#000DFF;
+    
 }
 
 .navlinks li a:hover {
     transition: 0.5s;
     color: #81FBB8;
-    border-bottom: #81FBB8 1px solid;
+    
 }
 
 button {
@@ -85,7 +85,7 @@ button:hover {
 }
 
 a#selected {
-    color: #57BD54
+    color: #FEB692
 }
 
 div.brand {
