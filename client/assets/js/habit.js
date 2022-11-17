@@ -62,7 +62,7 @@ async function displayHabits () {
 
 function displayNewSleepGoal(user) {
     markup = `<div class="habit" id="sleepHabit">
-                <i class="bi bi-alarm"></i>
+                
                 <h2>Sleep</h2>
                 <div class="newGoal">
                     <h1>+</h1>
@@ -78,7 +78,7 @@ function displayNewSleepGoal(user) {
 
 function displayNewExerciseGoal(user) {
     markup = `<div class="habit" id="exerciseHabit">
-                <i class="bi bi-heart-pulse"></i>
+                
                 <h2>Exercise</h2>
                 <div class="newGoal">
                     <h1>+</h1>
@@ -94,7 +94,7 @@ function displayNewExerciseGoal(user) {
 
 function displayNewWaterGoal(user) {
     markup = `<div class="habit" id="waterHabit">
-                <i class="bi bi-droplet"></i>
+                
                 <h2>Water</h2>
                 <div class="newGoal">
                     <h1>+</h1>

@@ -28,7 +28,7 @@ function displayNewGoalForm () {
     goalSection.innerHTML = "";
     const goalForm = `<form id="goalForm">
                         <input type="range" id="addGoal" name="addGoal" value="0" min="0" max="20" step="1" oninput="this.nextElementSibling.firstChild.value = this.value"></input>
-                        <label for="addGoal"><output>0</output> cups</label>
+                        <label for="addGoal"><output>0</output>litres</label>
                         <input type="submit" id="submitGoal" value="Add Goal!">
                     </form>
                     <button id="backToHome">back</button>`
@@ -49,7 +49,7 @@ async function submitGoal (e) {
                         "habitId": 3, 
                         "dailyGoal": dailyGoal, 
                         "weeklyGoal":  dailyGoal*7,
-                        "goalUnits": "cups"}
+                        "goalUnits": "litres"}
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -77,7 +77,7 @@ function displayAddTrackerForm (pageSection, user) {
     pageSection.innerHTML = ""
     markup = `<form id="waterForm">
                 <input type="range" id="addWater" name="addWater" value="0" min="0" max="10" step="1" oninput="this.nextElementSibling.firstChild.value = this.value"></input>
-                <label for="addWater"><output>0</output> cups</label>
+                <label for="addWater"><output>0</output> litres</label>
                 <input type="submit" id="submitWater" value="Log Water!">
             </form>
             <button id="displayAddTrackerButton">back</button>`
@@ -128,10 +128,12 @@ async function displayStreak(waterTracker, waterGoal){
     
     const streak = calculateStreak(waterTracker, waterGoal);
     // console.log(streak)
+    const div = document.createElement('div')
     const streakDisplay = document.createElement('h2')
     streakDisplay.textContent = `${streak}`;
-    
-    streakSection.append(streak)
+    const fire = document.createElement('i')
+    fire.className = 'bi bi-fire'
+    streakSection.append(streak, fire)
 }
 
 function calculateStreak(waterTracker, waterGoal){
