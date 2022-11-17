@@ -36,8 +36,6 @@
     - GET: displays all trackers with user id
 ##### `/trackers/:userid/:habitid`
     - GET: displays only trackers of a specified habit with user id
-##### `/trackers/:userid/:habitid/:date`
-    - GET: displays only trackers of a specified habit with user id for specified date
 
 
 ##### `/goals`
