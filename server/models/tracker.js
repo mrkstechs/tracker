@@ -68,16 +68,4 @@ module.exports = class Tracker {
             }
         })
     }
-
-    static findByUserHabitAndDate (userId, habitId, date) {
-        return new Promise (async (res, rej) => {
-            try {
-                let result = await db.query('SELECT * FROM tracker WHERE user_id = $1 AND habit_id = $2 AND date = $3 ORDER BY date ASC', [userId , habitId, date]);
-                let tracker = new Tracker(result.rows[0]);
-                res(tracker);
-            } catch (err) {
-                rej(`No trackers found for this user and habit: ${err}`)
-            }
-        })
-    }
 };

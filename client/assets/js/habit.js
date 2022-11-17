@@ -20,24 +20,34 @@ async function exPreview (user) {
 // }
 
 async function getUser() {
+    try {
     user = await JSON.parse(localStorage.getItem("user"));
     return user
+    } catch (err){
+        console.log(err)
+    }
 }
 
 async function changeTitle(){
+    try{
     const user = await getUser();
     const title = document.querySelector('h1');
     title.textContent = `Hello ${user.firstName}, welcome to your account.`
     title.style.color = '#CFF5E7'
+    } catch (err){
+        console.log(err)
+    }
 }
 
 async function displayHabits () {
+    try {
     const user = await getUser();
     console.log(user)
     userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
-    sleepGoal = userTrackedGoals.find(habit => habit.id == 1)
-    exerciseGoal = userTrackedGoals.find(habit => habit.id == 2)
-    waterGoal = userTrackedGoals.find(habit => habit.id == 3)
+    sleepGoal = userTrackedGoals.find(goal => goal.habitId == 1)
+    exerciseGoal = userTrackedGoals.find(goal => goal.habitId == 2)
+    waterGoal = userTrackedGoals.find(goal => goal.habitId == 3)
+    console.log(waterGoal)
     if (sleepGoal) {
         console.log("User is tracking sleep")
         displaySleep(user, sleepGoal)
@@ -56,7 +66,10 @@ async function displayHabits () {
     } else {
         displayNewWaterGoal(user)
     }
-    // Needs add goal button if user has no goals
+    return userTrackedGoals    
+    } catch (err){
+        console.log(err)
+    }
 }
 
 function displayNewSleepGoal(user) {
@@ -109,6 +122,7 @@ function displayNewWaterGoal(user) {
 
 
 async function displaySleep(user, sleepGoal) {
+    try{
     const sleepData = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
     console.log(sleepData)
     const lastSleep = sleepData[(sleepData.length-1)]
@@ -128,13 +142,17 @@ async function displaySleep(user, sleepGoal) {
     
     const sleepCard = document.querySelector('#sleepHabit')
     sleepCard.addEventListener('click', sendToSleep)
-
     
-
+    
+    return sleepData
+    } catch (err) {
+        console.log(err)
+    }
     
 } 
 
 async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
+    try {
     const goalProgressDisplay = `<div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">7/8 hours</span>
@@ -149,21 +167,17 @@ async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
     circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToSleep() {
-    window.location.assign('/client/sleep.html')
-}
-
-async function sendToWater() {
-    window.location.assign('/client/water.html')
-}
-
-async function sendToExercise() {
-    window.location.assign('/client/exercise.html')
+function sendToSleep() {
+   window.location.assign('/client/sleep.html')
 }
 
 async function displayExercise() {
+    try {
     const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
     console.log(exeData)
     const totalHours = exeData.dailyGoal
@@ -184,10 +198,13 @@ async function displayExercise() {
 
     const exerciseCard = document.querySelector('#exerciseHabit')
     exerciseCard.addEventListener('click', sendToExercise)
-
+    return exeData
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToExercise() {
+function sendToExercise() {
     window.location.assign('/client/exercise.html')
 }
 
@@ -195,6 +212,7 @@ async function sendToExercise() {
 
 
 async function displayWater() {
+    try {
     const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
 
     console.log(waterData);
@@ -217,11 +235,16 @@ async function displayWater() {
 
     const waterCard = document.querySelector('#waterHabit')
     waterCard.addEventListener('click', sendToWater)
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToWater() {
+function sendToWater() {
     window.location.assign('/client/water.html')
 }
 
 exPreview(1)
 changeTitle()
+
+module.exports = {getUser, changeTitle, displayHabits, displayNewSleepGoal, displayNewExerciseGoal, displayNewWaterGoal, displaySleep, displaySleepProgress, sendToSleep, displayExercise, sendToExercise, displayWater, sendToWater}
