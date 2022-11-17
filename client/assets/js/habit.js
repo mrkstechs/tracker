@@ -20,18 +20,27 @@ async function exPreview (user) {
 // }
 
 async function getUser() {
+    try {
     user = await JSON.parse(localStorage.getItem("user"));
     return user
+    } catch (err){
+        console.log(err)
+    }
 }
 
 async function changeTitle(){
+    try{
     const user = await getUser();
     const title = document.querySelector('h1');
     title.textContent = `Hello ${user.firstName}, welcome to your account.`
     title.style.color = '#CFF5E7'
+    } catch (err){
+        console.log(err)
+    }
 }
 
 async function displayHabits () {
+    try {
     const user = await getUser();
     console.log(user)
     userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
@@ -57,7 +66,10 @@ async function displayHabits () {
     } else {
         displayNewWaterGoal(user)
     }
-    // Needs add goal button if user has no goals
+    return userTrackedGoals    
+    } catch (err){
+        console.log(err)
+    }
 }
 
 function displayNewSleepGoal(user) {
@@ -129,9 +141,9 @@ async function displaySleep(user, sleepGoal) {
     
     const sleepCard = document.querySelector('#sleepHabit')
     sleepCard.addEventListener('click', sendToSleep)
-
     
-
+    
+    return sleepData
     
 } 
 
@@ -156,12 +168,6 @@ async function sendToSleep() {
     window.location.assign('/client/sleep.html')
 }
 
-async function sendToWater() {
-    window.location.assign('/client/water.html')
-}
-
-
-
 async function displayExercise() {
     const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
     console.log(exeData)
@@ -183,7 +189,7 @@ async function displayExercise() {
 
     const exerciseCard = document.querySelector('#exerciseHabit')
     exerciseCard.addEventListener('click', sendToExercise)
-
+    return exeData
 }
 
 async function sendToExercise() {
@@ -224,3 +230,5 @@ async function sendToWater() {
 
 exPreview(1)
 changeTitle()
+
+module.exports = {getUser, changeTitle, displayHabits, displayNewSleepGoal, displayNewExerciseGoal, displayNewWaterGoal, displaySleep, displaySleepProgress, sendToSleep, displayExercise, sendToExercise, displayWater, sendToWater}
