@@ -10,10 +10,12 @@ const resetTestDB = () => {
     return new Promise (async (res, rej) => {
         try {
             const db = new Pool();
+            console.log("db Pool")
             await db.query(reset)
+            console.log("reset run")
             res('Test DB reset')
         } catch (err) {
-            rej('Could not reset TestDB')
+            rej(`Could not reset TestDB: ${err}`)
         }
     })
 }
