@@ -67,4 +67,4 @@ async function index (req, res) {
     }
 }
 
-module.exports = { login, register, index}
+module.exports = { login, register, index, createToken}
