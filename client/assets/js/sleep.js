@@ -85,7 +85,7 @@ function displayLatestSleep(sleepGoal, lastSleep) {
     const progressValue = document.querySelector(".progress-value")
 
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
-    circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
+    circularProgress.style.background = `conic-gradient(#1F4AAC ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
 }
 
 function displayGoal(sleepGoal) {
@@ -119,7 +119,7 @@ function calculateStreak(sleepTrackers, sleepGoal){
 function displayAddTrackerButton (user) {
     const logSleepSection = document.querySelector('div.logSleep')
     logSleepSection.innerHTML = ""
-    markup = `<button id="displayAddTrackerForm" class="sleepButton"><i class="bi-plus"></i><br>Log Sleep!</button>`
+    markup = `<button id="displayAddTrackerForm" class="sleepButton"><i class="bi bi-plus-circle"></i></i>&nbspLog Sleep!</button>`
     logSleepSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerForm')
     button.addEventListener('click', () => {displayAddTrackerForm(logSleepSection, user)})
