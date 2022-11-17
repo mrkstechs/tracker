@@ -122,6 +122,7 @@ function displayNewWaterGoal(user) {
 
 
 async function displaySleep(user, sleepGoal) {
+    try{
     const sleepData = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
     console.log(sleepData)
     const lastSleep = sleepData[(sleepData.length-1)]
@@ -144,10 +145,14 @@ async function displaySleep(user, sleepGoal) {
     
     
     return sleepData
+    } catch (err) {
+        console.log(err)
+    }
     
 } 
 
 async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
+    try {
     const goalProgressDisplay = `<div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">7/8 hours</span>
@@ -162,13 +167,17 @@ async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
     progressValue.textContent = `${lastSleep.dailyValue} / ${sleepGoal.dailyGoal} hours`
 
     circularProgress.style.background = `conic-gradient(#f0ff ${(lastSleep.dailyValue)/(sleepGoal.dailyGoal)*360}deg, lightgrey 0deg)`    
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToSleep() {
-    window.location.assign('/client/sleep.html')
+function sendToSleep() {
+   window.location.assign('/client/sleep.html')
 }
 
 async function displayExercise() {
+    try {
     const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
     console.log(exeData)
     const totalHours = exeData.dailyGoal
@@ -190,9 +199,12 @@ async function displayExercise() {
     const exerciseCard = document.querySelector('#exerciseHabit')
     exerciseCard.addEventListener('click', sendToExercise)
     return exeData
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToExercise() {
+function sendToExercise() {
     window.location.assign('/client/exercise.html')
 }
 
@@ -200,6 +212,7 @@ async function sendToExercise() {
 
 
 async function displayWater() {
+    try {
     const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
 
     console.log(waterData);
@@ -222,9 +235,12 @@ async function displayWater() {
 
     const waterCard = document.querySelector('#waterHabit')
     waterCard.addEventListener('click', sendToWater)
+    } catch (err) {
+        console.log(err)
+    }
 }
 
-async function sendToWater() {
+function sendToWater() {
     window.location.assign('/client/water.html')
 }
 
