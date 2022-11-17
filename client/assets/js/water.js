@@ -125,13 +125,16 @@ async function displayWaterProgress(waterGoal, lastDrink){
 
 async function displayStreak(waterTracker, waterGoal){
     const streakSection = document.querySelector('.streak')
+    
     const streak = calculateStreak(waterTracker, waterGoal);
+    // console.log(streak)
     const streakDisplay = document.createElement('h2')
     streakDisplay.textContent = `${streak}`;
+    
     streakSection.append(streak)
 }
 
-async function calculateStreak(waterTracker, waterGoal){
+function calculateStreak(waterTracker, waterGoal){
     let streak=0;
     waterTracker.forEach(tracker =>{
         if(tracker.dailyValue >= waterGoal.dailyGoal){
