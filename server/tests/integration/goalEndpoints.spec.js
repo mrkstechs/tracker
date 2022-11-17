@@ -30,4 +30,14 @@ describe('Goal endpoints', () => {
         expect(res.statusCode).toEqual(200)
         expect(res.body.length).toEqual(1)
     })
+
+    it('should create a new goal', async() => {
+        const res = await request(api).post('/goals/').send({"userId": "1",
+                                                            "habitId": "1",
+                                                            "dailyGoal": "8",
+                                                            "weeklyGoal": "56",
+                                                            "goalUnits": "cups"
+                                                            })
+        expect(res.statusCode).toEqual(200)
+    })
 });
