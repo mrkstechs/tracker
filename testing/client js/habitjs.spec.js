@@ -16,6 +16,8 @@ global.localStorage = {
     }
   }
 
+
+
 describe("Hompeage", () => {
 
     beforeAll(() => {
@@ -26,9 +28,7 @@ describe("Hompeage", () => {
                 "password": "$2b$12$4Ah04EzYN3ilHi4b7ptGCuL2DC/bucfo9fV9ZvFPldCV7SAGaJhOm"}`)
     })
 
-    beforeEach(() => {
-        fetch.resetMocks()
-        
+    beforeEach(() => {      
         window.document.body.innerHTML = html
         })
 
@@ -65,6 +65,7 @@ describe("Hompeage", () => {
         beforeAll(() => {
             delete window.location;
             window.location = { assign: jest.fn() };
+
         })
 
         afterAll(() => {
@@ -87,30 +88,64 @@ describe("Hompeage", () => {
         })
     })
 
-    // describe('Display functions', () => {
-    //     test('Displays sleep card when user has sleep goal', () => {
+    describe('displayHabits function', () => {
 
-    //     })
+        describe('When user has no goals', () => {
 
-    //     test('Displays add sleep goal card when user has no sleep goal', () => {
+            beforeAll(() => {
+                fetch = jest.fn(() =>
+                Promise.resolve({
+                  json: () => Promise.resolve([]),
+                })
+              )
+            });
 
-    //     })
+            test('Calls displayNewSleepGoal when user has no sleep goal', () => {
+                displayHabits()
+                expect(displayNewSleepGoal).toHaveBeenCalled
+            })
 
-    //     test('Displays exercise card when user has exercise goal', () => {
+            test('Calls displayNewExerciseGoal when user has no exercise goal', () => {
+                displayHabits()
+                expect(displayNewExerciseGoal).toHaveBeenCalled
+            })
 
-    //     })
+            test('Calls displayNewWaterGoal when user has no water goal', () => {
+                displayHabits()
+                expect(displayNewWaterGoal).toHaveBeenCalled
+            })
 
-    //     test('Displays add exercise goal card when user has no exercise goal', () => {
+            })
 
-    //     })
+        describe('When user has goals', () => {
 
-    //     test('Displays water card when user has water goal', () => {
+            beforeAll(() => {
+                fetch = jest.fn(() =>
+                Promise.resolve({
+                  json: () => Promise.resolve([{habitId: 1}, {habitId: 2}, {habitId: 3}]),
+                })
+              )
+            });
 
-    //     })
+            test('Displays sleep card when user has sleep goal', () => {
+                displayHabits()
+                expect(displaySleep).toHaveBeenCalled
+            })
 
-    //     test('Displays add water goal card when user has no water goal', () => {
+            test('Displays exercise card when user has exercise goal', () => {
+                displayHabits()
+                expect(displayExercise).toHaveBeenCalled
+            })
 
-    //     })
-    // })
+            test('Displays water card when user has water goal', () => {
+                displayHabits()
+                expect(displayWater).toHaveBeenCalled
+            })
+        })
+
+
+
+
+    })
 
 })
