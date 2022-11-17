@@ -11,6 +11,6 @@ server.use(express.static(path.resolve('./client/')))
 server.use('/api', apiRoutes)
 
 
-server.get('/', (req, res) => res.sendFile(path.resolve('./client/index.html')))
+server.get('/', (req, res) => res.send('Accessing HabitHelper backend'))
 
 module.exports = server;
