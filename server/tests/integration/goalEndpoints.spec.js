@@ -25,7 +25,7 @@ describe('Goal endpoints', () => {
         expect(res.body.length).toEqual(3)
     })
 
-    it('should retrieve a goals by userid', async() => {
+    it('should retrieve a goals by userid and habitid', async() => {
         const res = await request(api).get('/goals/1/1')
         expect(res.statusCode).toEqual(200)
         expect(res.body.length).toEqual(1)
