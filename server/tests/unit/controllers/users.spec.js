@@ -24,10 +24,12 @@ describe('Users controller', () => {
 
     describe('login', () => {
         test('allows login with 200 status code', async () => {
-            const testUser = {username: "testusername", password: "testpass"}
+            const testUser = {id:1, email:"test@gmail.com", username: "testusername", firstname: "Test", lastname: "Tester", password: "$2b$12$5Jj91KP/f9wm0kNxsNL4nOPdsPRlKNF4xm0M3lOnCLT.wNgs/UUTG"}
+            const login = {"username": "testusername", "password": "abc123"}
             jest.spyOn(User, 'findByUsername')
-                .mockResolvedValue(User.findByUsername(testUser))
-            const mockReq = {body: testUser}
+                .mockResolvedValue(new User(testUser))
+            console.log(new User(testUser))
+            const mockReq = {body: login}
             await usersController.login(mockReq, mockRes)
             expect(mockStatus).toHaveBeenCalledWith(200)
         })

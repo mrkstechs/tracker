@@ -21,7 +21,7 @@ describe('User endpoints', () => {
     });
 
     it('should allow login with correct details', async () => {
-        const res = await request(api).post('/users/login').send({"username": "test1", "password": "abc123"})
+        const res = await request(api).post('/users/login').send({"username": "test2", "password": "abc123"})
         expect(res.statusCode).toEqual(200)
     });
 
