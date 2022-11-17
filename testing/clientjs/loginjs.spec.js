@@ -1,8 +1,6 @@
 /** @jest-environment jsdom */
 const fs = require("fs");
-const { TestEnvironment } = require("jest-environment-jsdom");
 const path = require('path');
-const { hasUncaughtExceptionCaptureCallback } = require("process");
 const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
