@@ -76,6 +76,10 @@ describe("Sleep page", () => {
         test('Retrieves user, sleepGoal, sleepTrackers, lastSleep', () => {
 
         })
+        
+        test('Streak is calculated correctly', () => {
+            
+        })
     })
 
     describe('Submit', () => {

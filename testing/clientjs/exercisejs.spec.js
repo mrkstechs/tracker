@@ -78,6 +78,10 @@ describe("Exercise page", () => {
         test('Retrieves user, exerciseGoal, exerciseTrackers, lastExercise', () => {
 
         })
+
+        test('Streak is calculated correctly', () => {
+            
+        })
     })
 
     describe('Submit', () => {
