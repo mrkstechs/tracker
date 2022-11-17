@@ -35,9 +35,10 @@ async function displayHabits () {
     const user = await getUser();
     console.log(user)
     userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
-    sleepGoal = userTrackedGoals.find(habit => habit.id == 1)
-    exerciseGoal = userTrackedGoals.find(habit => habit.id == 2)
-    waterGoal = userTrackedGoals.find(habit => habit.id == 3)
+    sleepGoal = userTrackedGoals.find(goal => goal.habitId == 1)
+    exerciseGoal = userTrackedGoals.find(goal => goal.habitId == 2)
+    waterGoal = userTrackedGoals.find(goal => goal.habitId == 3)
+    console.log(waterGoal)
     if (sleepGoal) {
         console.log("User is tracking sleep")
         displaySleep(user, sleepGoal)
@@ -159,9 +160,7 @@ async function sendToWater() {
     window.location.assign('/client/water.html')
 }
 
-async function sendToExercise() {
-    window.location.assign('/client/exercise.html')
-}
+
 
 async function displayExercise() {
     const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
