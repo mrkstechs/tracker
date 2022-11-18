@@ -1,9 +1,8 @@
 /** @jest-environment jsdom */
 const fs = require("fs");
-const { TestEnvironment } = require("jest-environment-jsdom");
 const path = require('path');
-const { hasUncaughtExceptionCaptureCallback } = require("process");
 const html = fs.readFileSync(path.resolve("../client/exercise.html"), 'utf8');
+document.documentElement.innerHTML = html.toString();
 
 global.fetch = require('jest-fetch-mock');
 
@@ -42,14 +41,14 @@ describe("Exercise page", () => {
             beforeAll(() => {
                 fetch = jest.fn(() =>
                 Promise.resolve({
-                  json: () => Promise.resolve([]),
+                  json: () => Promise.resolve({user: {userId: 1}}),
                 })
               )
             });
 
-            test('Calls new goal form', () => {
-                createDisplay();
-                expect(displayNewGoalForm).toHaveBeenCalled
+            test('Calls new goal form', async () => {
+                const user = {userId: 1}
+                expect(displayNewGoalForm).toHaveBeenCalledWith(user)
             })
         })
 

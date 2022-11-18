@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require('path');
 const html = fs.readFileSync(path.resolve("../client/index.html"), 'utf8');
+document.documentElement.innerHTML = html.toString();
 
 global.fetch = require('jest-fetch-mock');
 
@@ -26,36 +27,36 @@ describe("Login page", () => {
 
     afterAll(() => jest.resetAllMocks())
     
-    describe('Display', () => {
+    // describe('Display', () => {
         
-        describe('Login Form', () => {
-            test('Correctly displays login form', () => {
+    //     describe('Login Form', () => {
+    //         test('Correctly displays login form', () => {
 
-            })
+    //         })
             
-            test('User can login', () => {
+    //         test('User can login', () => {
                 
-            })
+    //         })
 
-            test('Redirects on succesful login', () => {
+    //         test('Redirects on succesful login', () => {
 
-            })
-        })
+    //         })
+    //     })
 
-        describe('Register Form', () => {
-            test('Correctly displays register form', () => {
+    //     describe('Register Form', () => {
+    //         test('Correctly displays register form', () => {
 
-            })
+    //         })
 
-            test('User can register', () => {
+    //         test('User can register', () => {
 
-            })
-        })
+    //         })
+    //     })
 
-        describe('Local storage', () => {
-            test('Creates user and token items in local storage', () => {
+    //     describe('Local storage', () => {
+    //         test('Creates user and token items in local storage', () => {
 
-            })
-        }) 
-    })
+    //         })
+    //     }) 
+    // })
 })
