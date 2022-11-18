@@ -1,5 +1,9 @@
 window.addEventListener('load', createDisplay)
 
+const logOutBtn = document.querySelector('.logout')
+
+logOutBtn.addEventListener('click', logOut);
+
 async function createDisplay () {
     try {
     const { user, exerciseGoal, exerciseTrackers, lastExercise } = await retrieveExData()
@@ -162,6 +166,11 @@ async function submitTracker (e) {
     } catch (err) {
         console.warn(err);
     }
+}
+
+
+async function logOut(){
+    window.location.assign('/client/index.html')
 }
 
 module.exports = {createDisplay, retrieveExData, displayNewGoalForm, submitGoal, displayLatestExercise, displayGoal, displayStreak, calculateStreak, displayAddTrackerButton, displayAddTrackerForm, submitTracker}
