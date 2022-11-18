@@ -18,6 +18,7 @@ async function createDisplay () {
         displayStreak(exerciseTrackers, exerciseGoal)
         displayAddTrackerButton(user)
     }
+    return { user, exerciseGoal, exerciseTrackers, lastExercise }
     } catch (err) {
         console.log(err)
     } 
