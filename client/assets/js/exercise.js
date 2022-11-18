@@ -5,6 +5,7 @@ const logOutBtn = document.querySelector('.logout')
 logOutBtn.addEventListener('click', logOut);
 
 async function createDisplay () {
+    try {
     const { user, exerciseGoal, exerciseTrackers, lastExercise } = await retrieveExData()
     if (!exerciseGoal){displayNewGoalForm(user)}
         else if (!lastExercise) {
@@ -17,6 +18,9 @@ async function createDisplay () {
         displayStreak(exerciseTrackers, exerciseGoal)
         displayAddTrackerButton(user)
     }
+    } catch (err) {
+        console.log(err)
+    } 
 }
 
 async function retrieveExData() {
@@ -164,6 +168,9 @@ async function submitTracker (e) {
     }
 }
 
+
 async function logOut(){
     window.location.assign('/client/index.html')
 }
+
+module.exports = {createDisplay, retrieveExData, displayNewGoalForm, submitGoal, displayLatestExercise, displayGoal, displayStreak, calculateStreak, displayAddTrackerButton, displayAddTrackerForm, submitTracker}
