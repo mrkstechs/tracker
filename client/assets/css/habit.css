@@ -88,7 +88,7 @@ a#selected {
     
     margin: 5em auto;
     width: 550px;
-    height: 550px;
+    height: 500px;
     background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -136,7 +136,7 @@ a#selected {
 }
 
 .progress {
-    background-color: #28C76F;
+    background-image: linear-gradient( 135deg, #CE9FFC 10%, #7367F0 100%);
     border-radius: 15px;
     height: 12em;
     margin: 1em;
@@ -151,7 +151,7 @@ a#selected {
 }
 
 .progress h2 {
-    
+    text-align: center;
     margin: 10px;
 }
 
@@ -284,27 +284,27 @@ input[type=range] {
 
 #submitSleep {
     margin-top: 10px;
-    background-color:#083AA9;
-    color: white;
+    background-color: #28C76F;
+    color: black;
     border-radius: 15px;
     height: 40px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
-    
-
+    font-size: 16px;
 }
 
 #submitSleep:hover {
     transition: 0.5s;
-    background-color: #28C76F;
+    background-color: #083AA9;
+    
 
 }
 
 #displayAddTrackerButton {
+    margin: 1em;
     position: relative;
     left: 70%;
-    margin-bottom: 10em;
 }
 
 
@@ -321,15 +321,14 @@ input[type=range] {
 
 #submitExercise {
     margin-top: 10px;
-    background-color:#083AA9;
-    color: white;
+    background-color: #28C76F;
+    color: black;
     border-radius: 15px;
     height: 40px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
-    
-
+    font-size: 16px;
 }
 
 #submitExercise:hover {
@@ -351,20 +350,44 @@ input[type=range] {
 
 #submitWater {
     margin-top: 10px;
-    background-color:#083AA9;
-    color: white;
+    background-color: #28C76F;
+    color: black;
     border-radius: 15px;
     height: 40px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: 0.5s;
-    
-
+    font-size: 16px;
 }
 
 #submitWater:hover {
     transition: 0.5s;
     background-color: #28C76F;
 
+}
+
+
+
+#goalForm {
+    margin: 20px;
+    
+}
+
+#submitGoal {
+    margin-top: 10px;
+    background-color: #28C76F;
+    color: black;
+    border-radius: 15px;
+    height: 40px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.5s;
+    font-size: 16px;
+    width: 120px;
+    height: 35px;
+}
+
+#backToHome {
+    margin: 0 20px;
 }
 

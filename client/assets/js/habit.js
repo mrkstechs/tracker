@@ -131,6 +131,9 @@ async function displaySleep(user, sleepGoal) {
     console.log(lastSleep)
                 
     const markup = `<div class="habit" id="sleepHabit">
+    <div class="icon" id="three">
+            <i class="bi bi-alarm"></i>
+        </div>
                         <h2>Sleep</h2>
                         <div class="progress" id="sleep">
                         <h3>Last logged sleep:</h3>
@@ -186,7 +189,9 @@ async function displayExercise() {
     console.log(totalHours) 
 
     const markup = `<div class="habit" id="exerciseHabit">
-                        
+    <div class="icon" id="two">
+    <i class="bi bi-heart-pulse"></i>
+</div>
                         <h2>Exercise</h2>
                         <div class="progress" id="exercise">
                             <h3>Your goal today is to exercise</h3>
@@ -222,6 +227,9 @@ async function displayWater() {
     console.log(lastDrink)
 
     const markup = `<div class="habit" id="waterHabit">
+    <div class="icon" id="one">
+            <i class="bi bi-droplet"></i>
+        </div>
                         <h2>Water</h2>
                         <div class="progress" id="water">
                         <h3>On ${(lastDrink.date).split('T')[0]} you drank:</h3>
@@ -229,7 +237,6 @@ async function displayWater() {
                         
                         <h3 id='waterDrank'>${lastDrink.dailyValue}</h3>
                         </div>
-                        <i class="bi bi-water" id='waterIcon'></i>
                         <h3 id='waterText'>litre(s) of water</h3>
                         </div>
                     </div>`

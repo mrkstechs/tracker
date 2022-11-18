@@ -39,7 +39,7 @@ function displayNewGoalForm () {
                         <label for="addGoal"><output>0</output> hours</label>
                         <input type="submit" id="submitGoal" value="Add Goal!">
                     </form>
-                    <button id="backToHome">back</button>`
+                    <button id="backToHome">Back</button>`
     goalSection.insertAdjacentHTML('afterbegin', goalForm)
 
     const button = document.querySelector('#backToHome')
@@ -136,7 +136,7 @@ function displayAddTrackerForm (pageSection, user) {
                 <label for="addSleep"><output>0</output> hours</label>
                 <input type="submit" id="submitSleep" value="Log Sleep!">
             </form>
-            <button id="displayAddTrackerButton">back</button>`
+            <button id="displayAddTrackerButton">Back</button>`
     pageSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerButton')
     button.addEventListener('click', function() {displayAddTrackerButton(user)})

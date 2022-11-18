@@ -5,7 +5,6 @@
 body {
     box-sizing: border-box;
     background-image: linear-gradient( 135deg, #6B73FF 10%, #2631fd 100%);
-
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -31,7 +30,7 @@ header {
 #logo {
     cursor: pointer;
     text-align: center;
-    background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+    color: #81FBB8;
     height: 40px;
     width: 165px;
     border-radius: 15px;
@@ -97,13 +96,6 @@ div.brand {
     color: #CFF5E7;
 }
 
-.icons {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
 .icon {
     background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
     margin: 0 auto;
@@ -111,6 +103,9 @@ div.brand {
     width: 80px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    top: -100px;
+    
 
 }
 
@@ -131,6 +126,7 @@ div.brand {
 
 
 #habits{
+    margin-top: 10em;
     display: flex;
     text-align: center;
     justify-content: space-around;
@@ -144,6 +140,13 @@ div.brand {
     background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.habit:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
 }
 
 #waterHabit {
@@ -162,10 +165,16 @@ div.brand {
     margin: 0 auto;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    top: -70px;
+}
+
+h2 {
+    position: relative;
+    top: -70px;
 }
 
 h3 {
-    color: #CFF5E7;
+    color: white;
     position: relative;
     top: 10%;
 }
@@ -189,14 +198,9 @@ h4.exercisegoal {
     margin: 10px auto;
 }
 
-h5.exercisehour {
-    margin: 0.5em auto;
-    font-size: 16px;
-    text-align: center;
-}
-
 h3.exercisehour {
-    margin: 0;
+    top: 0;
+    margin: 3em;
     
 }
 
@@ -217,7 +221,7 @@ h3.exercisehour {
     height: 170px;
     width: 170px;
     border-radius: 50%;
-    background: conic-gradient(#f0ff 30deg, lightgrey 0deg);
+    background: conic-gradient(#7367F0 30deg, lightgrey 0deg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,6 +245,8 @@ h3.exercisehour {
 }
 
 #sleep h4 {
+    font-family: 'Noto Sans';
+    color: white;
     position: relative;
     top: 7%;
 }
@@ -284,19 +290,21 @@ h3.exercisehour {
 }
 
 .newGoal {
-    background-color: #083AA9;
+    
     border-radius: 15px;
     width: 200px; 
     height: 120px;
-    color: white;
+    color: black;
     text-align: center;
     margin: 10px auto;
-    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     cursor: pointer;
+    font-family: 'Noto Sans';
+    font-size: 20px;
 }
 
 #waterText {
-    margin: 0;
+    top: 0;
+    margin: 3em;
 }
 
 .newGoal h1 {
