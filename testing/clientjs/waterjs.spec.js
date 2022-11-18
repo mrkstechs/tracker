@@ -33,63 +33,63 @@ describe("Sleep page", () => {
 
     afterAll(() => jest.resetAllMocks())
     
-    describe('Display', () => {
+    // describe('Display', () => {
         
-        describe('User has no goals', () => {
-            test('Calls new goal form', () => {
-                expect(displayNewGoalForm).toHaveBeenCalled()
-            })
-        })
+    //     describe('User has no goals', () => {
+    //         test('Calls new goal form', () => {
+    //             expect(displayNewGoalForm).toHaveBeenCalled()
+    //         })
+    //     })
 
-        describe('User has goal but no trackers', () => {
-            test('Calls add tracker, goal and streak but not latest water', () => {
+    //     describe('User has goal but no trackers', () => {
+    //         test('Calls add tracker, goal and streak but not latest water', () => {
 
-            })
-        })
+    //         })
+    //     })
 
-        describe('User has goal and trackers', () => {
-            test('Calls add tracker, goal, streak and latest water', () => {
+    //     describe('User has goal and trackers', () => {
+    //         test('Calls add tracker, goal, streak and latest water', () => {
 
-            })
-        })
+    //         })
+    //     })
 
-        describe('Items correctly displayed', () => {
-            test('New goal form correctly added on page', () => {
+    //     describe('Items correctly displayed', () => {
+    //         test('New goal form correctly added on page', () => {
 
-            })
-            test('New tracker button correctly added on page', () => {
+    //         })
+    //         test('New tracker button correctly added on page', () => {
 
-            })
-            test('New tracker form correctly added on page', () => {
+    //         })
+    //         test('New tracker form correctly added on page', () => {
 
-            })
-            test('Display goal correctly added on page', () => {
+    //         })
+    //         test('Display goal correctly added on page', () => {
 
-            })
-            test('Streak correctly added on page', () => {
+    //         })
+    //         test('Streak correctly added on page', () => {
 
-            })
-        })
-    })
+    //         })
+    //     })
+    // })
 
-    describe('Water data', () => {
-        test('Retrieves user, waterGoal, waterTrackers, lastWater', () => {
+    // describe('Water data', () => {
+    //     test('Retrieves user, waterGoal, waterTrackers, lastWater', () => {
 
-        })
+    //     })
 
-        test('Streak is calculated correctly', () => {
+    //     test('Streak is calculated correctly', () => {
             
-        })
-    })
+    //     })
+    // })
 
-    describe('Submit', () => {
-        test('User can submit a goal', () => {
+    // describe('Submit', () => {
+    //     test('User can submit a goal', () => {
 
-        })
+    //     })
 
-        test('User can submit a tracker', () => {
+    //     test('User can submit a tracker', () => {
 
-        })
-    })
+    //     })
+    // })
 
 });
