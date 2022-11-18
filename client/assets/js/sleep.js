@@ -1,5 +1,9 @@
 window.addEventListener('load', createDisplay)
 
+const logOutBtn = document.querySelector('.logout')
+
+logOutBtn.addEventListener('click', logOut);
+
 async function createDisplay() {
     const { user, sleepGoal, sleepTrackers, lastSleep } = await retrieveSleepData()
     if (!sleepGoal){displayNewGoalForm(user)} 
@@ -158,4 +162,8 @@ async function submitTracker (e) {
     } catch (err) {
         console.warn(err);
     }
+}
+
+async function logOut(){
+    window.location.assign('/client/index.html')
 }
