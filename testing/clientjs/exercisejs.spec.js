@@ -41,14 +41,14 @@ describe("Exercise page", () => {
             beforeAll(() => {
                 fetch = jest.fn(() =>
                 Promise.resolve({
-                  json: () => Promise.resolve([]),
+                  json: () => Promise.resolve({user: {userId: 1}}),
                 })
               )
             });
 
-            test('Calls new goal form', () => {
-                createDisplay();
-                expect(displayNewGoalForm).toHaveBeenCalled
+            test('Calls new goal form', async () => {
+                const user = {userId: 1}
+                expect(displayNewGoalForm).toHaveBeenCalledWith(user)
             })
         })
 
