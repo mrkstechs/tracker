@@ -1,19 +1,19 @@
+const path = require('path')
 const express = require('express');
 const cors = require('cors');
 const server = express();
 server.use(cors());
 server.use(express.json());
 
-const userRoutes =  require('./routes/users')
-const goalRoutes = require('./routes/goals')
-const trackerRoutes = require('./routes/trackers')
-const habitRoutes = require('./routes/habits')
+const apiRoutes =  require('./routes/api')
+const port = process.env.PORT || 3000;
 
-server.use('/users', userRoutes)
-server.use('/goals', goalRoutes)
-server.use('/trackers', trackerRoutes)
-server.use('/habits', habitRoutes)
+server.use(express.static(path.resolve('./client/')))
+server.use('/api', apiRoutes)
 
-server.get('/', (req, res) => res.send('Accessing HabitHelper backend'));
+
+server.get('/', (req, res) => res.send('Accessing HabitHelper backend'))
+
+server.listen(port, () => console.log(`Express now departing from port ${port}!`))
 
 module.exports = server;

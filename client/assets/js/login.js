@@ -80,7 +80,7 @@ async function requestLogin(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/users/login`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/api/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);
@@ -98,7 +98,7 @@ async function requestRegistration(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`http://localhost:3000/users/register`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/api/register`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         requestLogin(e);
@@ -111,5 +111,5 @@ function login(data){
     localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
 
-    window.location.assign("/client/homepage.html") 
+    window.location.assign("/homepage.html") 
 }
