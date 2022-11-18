@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
 const fs = require("fs");
 const path = require('path');
-const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
+const html = fs.readFileSync(path.resolve("../client/index.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
 

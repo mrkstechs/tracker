@@ -3,11 +3,11 @@ const fs = require("fs");
 const { TestEnvironment } = require("jest-environment-jsdom");
 const path = require('path');
 const { hasUncaughtExceptionCaptureCallback } = require("process");
-const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
+const html = fs.readFileSync(path.resolve("../client/exercise.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
 
-const {  } = require(path.resolve("../client/assets/js/exercise.js"))
+const { createDisplay, retrieveExData, displayNewGoalForm, submitGoal, displayLatestExercise, displayGoal, displayStreak, calculateStreak, displayAddTrackerButton, displayAddTrackerForm, submitTracker } = require(path.resolve("../client/assets/js/exercise.js"))
 
 global.localStorage = {
     
@@ -38,60 +38,82 @@ describe("Exercise page", () => {
     describe('Display', () => {
         
         describe('User has no goals', () => {
+            
+            beforeAll(() => {
+                fetch = jest.fn(() =>
+                Promise.resolve({
+                  json: () => Promise.resolve([]),
+                })
+              )
+            });
+
             test('Calls new goal form', () => {
-                expect(displayNewGoalForm).toHaveBeenCalled()
+                createDisplay();
+                expect(displayNewGoalForm).toHaveBeenCalled
             })
         })
 
         describe('User has goal but no trackers', () => {
+
+            beforeAll(() => {
+                fetch = jest.fn(() =>
+                Promise.resolve({
+                  json: () => Promise.resolve([]),
+                })
+              )
+            });
+
             test('Calls add tracker, goal and streak but not latest exercise', () => {
-
+                createDisplay();
+                expect(displayGoal).toHaveBeenCalled
+                expect(displayStreak).toHaveBeenCalled
+                expect(displayAddTrackerButton).toHaveBeenCalled
             })
         })
 
-        describe('User has goal and trackers', () => {
-            test('Calls add tracker, goal, streak and latest exercise', () => {
+    //     describe('User has goal and trackers', () => {
+    //         test('Calls add tracker, goal, streak and latest exercise', () => {
 
-            })
-        }) 
+    //         })
+    //     }) 
 
-        describe('Items correctly displayed', () => {
-            test('New goal form correctly added on page', () => {
+    //     describe('Items correctly displayed', () => {
+    //         test('New goal form correctly added on page', () => {
 
-            })
-            test('New tracker button correctly added on page', () => {
+    //         })
+    //         test('New tracker button correctly added on page', () => {
 
-            })
-            test('New tracker form correctly added on page', () => {
+    //         })
+    //         test('New tracker form correctly added on page', () => {
 
-            })
-            test('Display goal correctly added on page', () => {
+    //         })
+    //         test('Display goal correctly added on page', () => {
 
-            })
-            test('Streak correctly added on page', () => {
+    //         })
+    //         test('Streak correctly added on page', () => {
 
-            })
-        })
-    })
+    //         })
+    //     })
+    // })
 
-    describe('Exercise data', () => {
-        test('Retrieves user, exerciseGoal, exerciseTrackers, lastExercise', () => {
+    // describe('Exercise data', () => {
+    //     test('Retrieves user, exerciseGoal, exerciseTrackers, lastExercise', () => {
 
-        })
+    //     })
 
-        test('Streak is calculated correctly', () => {
+    //     test('Streak is calculated correctly', () => {
             
-        })
-    })
+    //     })
+    // })
 
-    describe('Submit', () => {
-        test('User can submit a goal', () => {
+    // describe('Submit', () => {
+    //     test('User can submit a goal', () => {
 
-        })
+    //     })
 
-        test('User can submit a tracker', () => {
+    //     test('User can submit a tracker', () => {
 
-        })
+    //     })
     })
 
 });
