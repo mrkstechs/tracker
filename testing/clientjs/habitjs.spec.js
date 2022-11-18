@@ -1,12 +1,6 @@
 /** @jest-environment jsdom */
 const fs = require("fs");
 const path = require('path');
-const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
-document.documentElement.innerHTML = html.toString();
-
-global.fetch = require('jest-fetch-mock');
-
-const { getUser, changeTitle, displayHabits, displayNewSleepGoal, displayNewExerciseGoal, displayNewWaterGoal, displaySleep, displaySleepProgress, sendToSleep, displayExercise, sendToExercise, displayWater, sendToWater } = require(path.resolve("../client/assets/js/habit.js"))
 
 global.localStorage = {
     
@@ -16,8 +10,20 @@ global.localStorage = {
     getItem (key) { 
       return this.state[key]
     }
-  }
+}
 
+localStorage.setItem("user", `{"email": "test@gmail.com",
+"firstName": "Test",
+"lastName": "Tester",
+"username": "testuser",
+"password": "$2b$12$4Ah04EzYN3ilHi4b7ptGCuL2DC/bucfo9fV9ZvFPldCV7SAGaJhOm"}`)
+
+const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
+document.documentElement.innerHTML = html.toString();
+
+global.fetch = require('jest-fetch-mock');
+
+const { getUser, changeTitle, displayHabits, displayNewSleepGoal, displayNewExerciseGoal, displayNewWaterGoal, displaySleep, displaySleepProgress, sendToSleep, displayExercise, sendToExercise, displayWater, sendToWater } = require(path.resolve("../client/assets/js/habit.js"))
 
 
 describe("Hompeage", () => {
@@ -148,7 +154,7 @@ describe("Hompeage", () => {
             const habitSection = document.querySelector('#waterHabit')
             displaySleep(user, sleepGoal)
             const date = document.querySelector('div.sleep h4')
-            expect(habitSection).toEqual("2022-11-17")
+            expect(date).toEqual("2022-11-17")
         })
 
 
