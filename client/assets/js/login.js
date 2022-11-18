@@ -111,5 +111,5 @@ function login(data){
     localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
 
-    window.location.assign("/homepage.html") 
+    window.location.assign("client/homepage.html") 
 }
