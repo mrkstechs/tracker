@@ -2,4 +2,7 @@
 */node_modules
 _scripts
 *.md
-docker-compose.yaml
+docker-compose.yaml*/AppDataRoamingnpm-cache
+*/node_modules
+.env
+*/.env

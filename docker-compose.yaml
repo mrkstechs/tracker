@@ -19,7 +19,7 @@ services:
         target: /app
     depends_on:
       - db
-    command: bash -c "npm i && npm run seed && npm run dev"
+    command: bash -c "npm i && npm rebuild bcrypt --build-from-source && npm run seed && npm run dev"
 
   db:
     container_name: tracker_db
