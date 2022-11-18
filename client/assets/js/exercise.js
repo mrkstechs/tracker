@@ -80,7 +80,7 @@ function displayLatestExercise(exerciseGoal, lastExercise) {
 
     const progressSection = document.querySelector('div.progress')
 
-    const goalProgressDisplay = `<h2>Progress</h2>
+    const goalProgressDisplay = `<h2>Latest Exercise</h2>
                                 <div id="exerciseProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">? / 8 hours</span>
@@ -93,7 +93,7 @@ function displayLatestExercise(exerciseGoal, lastExercise) {
     const progressValue = document.querySelector(".progress-value")
 
     progressValue.textContent = `${lastExercise.dailyValue} / ${exerciseGoal.dailyGoal} hours`
-    circularProgress.style.background = `conic-gradient(#f0ff ${(lastExercise.dailyValue)/(exerciseGoal.dailyGoal)*360}deg, lightgrey 0deg)`
+    circularProgress.style.background = `conic-gradient(#1F4AAC ${(lastExercise.dailyValue)/(exerciseGoal.dailyGoal)*360}deg, lightgrey 0deg)`
 }
 
 function displayGoal(exerciseGoal) {
@@ -125,9 +125,9 @@ function calculateStreak(exerciseTrackers, exerciseGoal){
 }
 
 function displayAddTrackerButton (user) {
-    const logExSection = document.querySelector('div.logExercise')
+    const logExSection = document.querySelector('div.logexercise')
     logExSection.innerHTML = ""
-    markup = `<button id="displayAddTrackerForm" class="exerciseButton"><i class="bi-plus"></i><br>Log Exercise!</button>`
+    markup = `<button id="displayAddTrackerForm" class="exerciseButton"><i class="bi-plus-circle"></i><br>Log Exercise!</button>`
     logExSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerForm')
     button.addEventListener('click', () => {displayAddTrackerForm(logExSection, user)})
