@@ -39,16 +39,17 @@ describe("Exercise page", () => {
         describe('User has no goals', () => {
             
             beforeAll(() => {
-                fetch = jest.fn(() =>
-                Promise.resolve({
-                  json: () => Promise.resolve({user: {userId: 1}}),
-                })
-              )
+
             });
 
             test('Calls new goal form', async () => {
-                const user = {userId: 1}
-                expect(displayNewGoalForm).toHaveBeenCalledWith(user)
+                const retrieveExData = jest.fn()
+                const displayNewGoalForm = jest.fn()
+                retrieveExData.mockReturnValueOnce({user: {}, exerciseGoal: {a:""}, exerciseTrackers: {}, lastExercise: {}})
+                console.log(retrieveExData())
+                const { user, exerciseGoal, exerciseTrackers, lastExercise } = createDisplay()
+                console.log(exerciseGoal)
+                expect(displayNewGoalForm).toHaveBeenCalled()
             })
         })
 
