@@ -4,8 +4,8 @@ const router = express.Router()
 
 const habitController = require('../controllers/habits')
 
-router.post('/habit', habitController.newHabit)
+router.post('/', habitController.newHabit)
 
-router.get('/habit', habitController.index)
+router.get('/', habitController.index)
 
 module.exports = router
