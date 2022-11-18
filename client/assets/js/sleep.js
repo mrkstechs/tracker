@@ -22,8 +22,8 @@ async function createDisplay() {
 async function retrieveSleepData() {
     try {
     user = await JSON.parse(localStorage.getItem("user"));
-    const sleepGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/1`)).json())[0]
-    const sleepTrackers = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
+    const sleepGoal = (await (await fetch(`https://habithelper.herokuapp.com/goals/${user.id}/1`)).json())[0]
+    const sleepTrackers = await (await fetch(`https://habithelper.herokuapp.com/trackers/${user.id}/1`)).json()
     const lastSleep = sleepTrackers[(sleepTrackers.length)-1]
     return  { user, sleepGoal, sleepTrackers, lastSleep };
     } catch (err) {
@@ -43,7 +43,7 @@ function displayNewGoalForm () {
     goalSection.insertAdjacentHTML('afterbegin', goalForm)
 
     const button = document.querySelector('#backToHome')
-    button.addEventListener('click', () => {window.location.assign('/client/homepage.html')})
+    button.addEventListener('click', () => {window.location.assign('/homepage.html')})
 
     const newGoalForm = document.querySelector('#goalForm')
     newGoalForm.addEventListener('submit', submitGoal)
@@ -63,7 +63,7 @@ async function submitGoal (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/goals`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/goals`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -155,7 +155,7 @@ async function submitTracker (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/trackers`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/trackers`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -165,5 +165,5 @@ async function submitTracker (e) {
 }
 
 async function logOut(){
-    window.location.assign('/client/index.html')
+    window.location.assign('/index.html')
 }

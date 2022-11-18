@@ -22,8 +22,8 @@ async function createDisplay() {
 async function retrieveWaterData(){
     try {
         user = await JSON.parse(localStorage.getItem('user'));
-        const waterGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/3`)).json())[0]
-        const waterTracker = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
+        const waterGoal = (await (await fetch(`https://habithelper.herokuapp.com/goals/${user.id}/3`)).json())[0]
+        const waterTracker = await (await fetch(`https://habithelper.herokuapp.com/trackers/${user.id}/3`)).json()
         const lastDrink = waterTracker[(waterTracker.length) - 1]
         return { user, waterGoal, waterTracker, lastDrink};
     } catch (err) {
@@ -43,7 +43,7 @@ function displayNewGoalForm () {
     goalSection.insertAdjacentHTML('afterbegin', goalForm)
 
     const button = document.querySelector('#backToHome')
-    button.addEventListener('click', () => {window.location.assign('/client/homepage.html')})
+    button.addEventListener('click', () => {window.location.assign('/homepage.html')})
 
     const newGoalForm = document.querySelector('#goalForm')
     newGoalForm.addEventListener('submit', submitGoal)
@@ -63,7 +63,7 @@ async function submitGoal (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/goals`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/goals`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -155,7 +155,7 @@ async function submitTracker (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/trackers`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/trackers`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -165,5 +165,5 @@ async function submitTracker (e) {
 }
 
 async function logOut(){
-    window.location.assign('/client/index.html')
+    window.location.assign('/index.html')
 }// retrieveWaterData();

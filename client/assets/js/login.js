@@ -80,7 +80,7 @@ async function requestLogin(e){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(new FormData(form)))
         }
-        const r = await fetch(`https://habithelper.herokuapp.com/users/login`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/login`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err); }
         login(data);
@@ -92,18 +92,34 @@ async function requestLogin(e){
 async function requestRegistration(e) {
     e.preventDefault();
     const form = document.querySelector('form')
-    try {
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    const formData = Object.fromEntries(new FormData(form))
+    const regex = /[^a-zA-z\d]/gm
+    const regexEmail = /[^a-zA-z\d@]/gm
+
+    if(validator.isEmpty(formData.username)){
+        window.alert('Username cannot be empty!')
+    } else if(validator.isEmpty(formData.firstName)){
+        window.alert('Firstname cannot be empty!')
+    } else if(validator.isEmpty(formData.lastName)){
+        window.alert('Lastname cannot be empty!')
+    } else if(validator.isEmpty(formData.password)){
+        window.alert('Password cannot be empty!')
+    } else if(validator.isEmpty(formData.email) && validator.isEmail(formData.email)){
+        window.alert('Vaild email required!')
+    } else {
+        try {
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            }
+            const r = await fetch(`https://habithelper.herokuapp.com/users/register`, options)
+            const data = await r.json()
+            if (data.err){ throw Error(data.err) }
+            requestLogin(e);
+        } catch (err) {
+            console.warn(err);
         }
-        const r = await fetch(`https://habithelper.herokuapp.com/users/register`, options)
-        const data = await r.json()
-        if (data.err){ throw Error(data.err) }
-        requestLogin(e);
-    } catch (err) {
-        console.warn(err);
     }
 }
 
@@ -111,5 +127,5 @@ function login(data){
     localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
 
-    window.location.assign("client/homepage.html") 
+    window.location.assign("/homepage.html") 
 }

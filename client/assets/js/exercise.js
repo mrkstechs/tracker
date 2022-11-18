@@ -27,8 +27,8 @@ async function createDisplay () {
 async function retrieveExData() {
     try {
     user = await JSON.parse(localStorage.getItem("user"));
-    const exerciseGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
-    const exerciseTrackers = await (await fetch(`http://localhost:3000/trackers/${user.id}/2`)).json()
+    const exerciseGoal = (await (await fetch(`https://habithelper.herokuapp.com/goals/${user.id}/2`)).json())[0]
+    const exerciseTrackers = await (await fetch(`https://habithelper.herokuapp.com/trackers/${user.id}/2`)).json()
     const lastExercise = exerciseTrackers[(exerciseTrackers.length)-1]
     return  { user, exerciseGoal, exerciseTrackers, lastExercise };
     } catch (err) {
@@ -48,7 +48,7 @@ function displayNewGoalForm () {
     goalSection.insertAdjacentHTML('afterbegin', goalForm)
 
     const button = document.querySelector('#backToHome')
-    button.addEventListener('click', () => {window.location.assign('/client/homepage.html')})
+    button.addEventListener('click', () => {window.location.assign('/homepage.html')})
 
     const newGoalForm = document.querySelector('#goalForm')
     newGoalForm.addEventListener('submit', submitGoal)
@@ -68,7 +68,7 @@ async function submitGoal (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/goals`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/goals`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -160,7 +160,7 @@ async function submitTracker (e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         }
-        const r = await fetch(`http://localhost:3000/trackers`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/trackers`, options)
         const data = await r.json()
         if (data.err){ throw Error(data.err) }
         window.location.reload();
@@ -171,7 +171,7 @@ async function submitTracker (e) {
 
 
 async function logOut(){
-    window.location.assign('/client/index.html')
+    window.location.assign('/index.html')
 }
 
 module.exports = {createDisplay, retrieveExData, displayNewGoalForm, submitGoal, displayLatestExercise, displayGoal, displayStreak, calculateStreak, displayAddTrackerButton, displayAddTrackerForm, submitTracker}

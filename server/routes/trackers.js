@@ -4,12 +4,12 @@ const router = express.Router()
 
 const trackerController = require('../controllers/trackers')
 
-router.get('/', trackerController.index)
-router.get('/:userid', trackerController.findByUserId)
-router.get('/:userid/:habitid', trackerController.findByUserAndHabit)
+router.get('/trackers', trackerController.index)
+router.get('/trackers:userid', trackerController.findByUserId)
+router.get('/trackers:userid/:habitid', trackerController.findByUserAndHabit)
 
-router.post('/', trackerController.newTracker)
+router.post('/trackers', trackerController.newTracker)
 
-router.put('/', trackerController.updateTracker)
+router.put('/trackers', trackerController.updateTracker)
 
 module.exports = router

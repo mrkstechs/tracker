@@ -7,7 +7,7 @@ logOutBtn.addEventListener('click', logOut);
 
 async function exPreview (user) {
     try {
-        const response = await fetch(`http://localhost:3000/goals/${user}`)
+        const response = await fetch(`https://habithelper.herokuapp.com/goals/${user}`)
     } catch {
 
     }
@@ -45,7 +45,7 @@ async function displayHabits () {
     try {
     const user = await getUser();
     console.log(user)
-    userTrackedGoals = await (await fetch(`http://localhost:3000/goals/${user.id}`)).json()
+    userTrackedGoals = await (await fetch(`https://habithelper.herokuapp.com/goals/${user.id}`)).json()
     sleepGoal = userTrackedGoals.find(goal => goal.habitId == 1)
     exerciseGoal = userTrackedGoals.find(goal => goal.habitId == 2)
     waterGoal = userTrackedGoals.find(goal => goal.habitId == 3)
@@ -125,7 +125,7 @@ function displayNewWaterGoal(user) {
 
 async function displaySleep(user, sleepGoal) {
     try{
-    const sleepData = await (await fetch(`http://localhost:3000/trackers/${user.id}/1`)).json()
+    const sleepData = await (await fetch(`https://habithelper.herokuapp.com/trackers/${user.id}/1`)).json()
     console.log(sleepData)
     const lastSleep = sleepData[(sleepData.length-1)]
     console.log(lastSleep)
@@ -178,12 +178,12 @@ async function displaySleepProgress(sleepGoal, lastSleep, postSection) {
 }
 
 function sendToSleep() {
-   window.location.assign('/client/sleep.html')
+   window.location.assign('/sleep.html')
 }
 
 async function displayExercise() {
     try {
-    const exeData = (await (await fetch(`http://localhost:3000/goals/${user.id}/2`)).json())[0]
+    const exeData = (await (await fetch(`https://habithelper.herokuapp.com/goals/${user.id}/2`)).json())[0]
     console.log(exeData)
     const totalHours = exeData.dailyGoal
     console.log(totalHours) 
@@ -212,7 +212,7 @@ async function displayExercise() {
 }
 
 function sendToExercise() {
-    window.location.assign('/client/exercise.html')
+    window.location.assign('/exercise.html')
 }
 
 
@@ -220,7 +220,7 @@ function sendToExercise() {
 
 async function displayWater() {
     try {
-    const waterData = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
+    const waterData = await (await fetch(`https://habithelper.herokuapp.com/trackers/${user.id}/3`)).json()
 
     console.log(waterData);
     const lastDrink = waterData[(waterData.length-1)]
@@ -250,11 +250,11 @@ async function displayWater() {
 }
 
 function sendToWater() {
-    window.location.assign('/client/water.html')
+    window.location.assign('/water.html')
 }
 
 async function logOut(){
-    window.location.assign('/client/index.html')
+    window.location.assign('/index.html')
 }
 
 exPreview(1)

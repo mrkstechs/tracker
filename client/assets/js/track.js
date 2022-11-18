@@ -12,7 +12,7 @@ async function addTracker(data) {
                 userId: data.userId
             })
         }
-        const r = await fetch(`http://localhost:3000/api/trackers`, options)
+        const r = await fetch(`https://habithelper.herokuapp.com/trackers`, options)
         return r
     } catch (err) {
         console.warn(`Error: ${err}`);
