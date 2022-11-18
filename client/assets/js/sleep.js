@@ -72,7 +72,7 @@ function displayLatestSleep(sleepGoal, lastSleep) {
 
     const progressSection = document.querySelector('div.progress')
 
-    const goalProgressDisplay = `<h2>Latest logged sleep</h2>
+    const goalProgressDisplay = `<h2>Latest Logged Sleep</h2>
                                 <div id="sleepProgress">
                                     <div class="circular-progress">
                                         <span class="progress-value">? / 8 hours</span>

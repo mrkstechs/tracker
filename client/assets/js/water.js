@@ -16,11 +16,15 @@ async function createDisplay() {
 }
 
 async function retrieveWaterData(){
-    user = await JSON.parse(localStorage.getItem('user'));
-    const waterGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/3`)).json())[0]
-    const waterTracker = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
-    const lastDrink = waterTracker[(waterTracker.length) - 1]
-    return { user, waterGoal, waterTracker, lastDrink};
+    try {
+        user = await JSON.parse(localStorage.getItem('user'));
+        const waterGoal = (await (await fetch(`http://localhost:3000/goals/${user.id}/3`)).json())[0]
+        const waterTracker = await (await fetch(`http://localhost:3000/trackers/${user.id}/3`)).json()
+        const lastDrink = waterTracker[(waterTracker.length) - 1]
+        return { user, waterGoal, waterTracker, lastDrink};
+    } catch (err) {
+        return false
+    }
 }
 
 function displayNewGoalForm () {
@@ -64,10 +68,58 @@ async function submitGoal (e) {
     }
 }
 
+function displayWaterProgress(waterGoal, lastDrink) {
+
+    const progressSection = document.querySelector('div.progress')
+
+    const goalProgressDisplay = `<h2>Latest Drink</h2>
+                                <div id="waterProgress">
+                                    <div class="circular-progress">
+                                        <span class="progress-value">? / 8 hours</span>
+                                    </div>
+                                </div>`
+
+    progressSection.insertAdjacentHTML('beforeend', goalProgressDisplay)
+
+    const circularProgress = document.querySelector(".circular-progress")
+    const progressValue = document.querySelector(".progress-value")
+
+    progressValue.textContent = `${lastDrink.dailyValue} / ${waterGoal.dailyGoal} litres`
+    circularProgress.style.background = `conic-gradient(#1F4AAC ${(lastDrink.dailyValue)/(waterGoal.dailyGoal)*360}deg, lightgrey 0deg)`
+}
+
+function displayGoal(waterGoal){
+    const goalSection = document.querySelector('div.goal') 
+    const markup = `<h2>Goal</h2>
+                    <h1>${waterGoal.dailyGoal}</h1>
+                    <h3> litres / day </h3`
+    goalSection.insertAdjacentHTML("afterbegin",markup)
+}
+
+function displayStreak(waterTrackers, waterGoal) {
+    const streakSection = document.querySelector('div.streak')
+    const streak = calculateStreak(waterTrackers, waterGoal);
+    const markup = `<h2>Streak</h2>
+                    <h1>${streak}<i class="bi bi-fire"></i></h1>`
+    streakSection.insertAdjacentHTML("afterbegin",markup)
+}
+
+function calculateStreak(waterTracker, waterGoal){
+    let streak=0;
+    waterTracker.forEach(tracker =>{
+        if(tracker.dailyValue >= waterGoal.dailyGoal){
+            streak++;
+        } else {
+            streak = 0;
+        }
+    })
+    return streak;
+}
+
 function displayAddTrackerButton (user) {
     const logWaterSection = document.querySelector('div.logWater')
     logWaterSection.innerHTML = ""
-    markup = `<button id="displayAddTrackerForm" class="waterButton"><i class="bi-plus"></i><br>Log Water!</button>`
+    markup = `<button id="displayAddTrackerForm" class="waterButton"><i class="bi-plus-circle"></i>&nbspLog Water!</button>`
     logWaterSection.insertAdjacentHTML('afterbegin',markup)
     const button = document.querySelector('#displayAddTrackerForm')
     button.addEventListener('click', () => {displayAddTrackerForm(logWaterSection, user)})
@@ -106,45 +158,5 @@ async function submitTracker (e) {
     } catch (err) {
         console.warn(err);
     }
-}
-
-async function displayGoal(waterGoal){
-    const goalSection = document.querySelector('.goal')
-    const goal = document.createElement('h2')
-    goal.textContent = `${waterGoal.dailyGoal}`
-    goalSection.append(goal, `${waterGoal.goalUnits} / day`)
-}
-
-async function displayWaterProgress(waterGoal, lastDrink){
-    const progressSection = document.querySelector('.progress')
-    const progressDisplay = ` <div class="circular-progress">
-                    <span class="progress-value">${lastDrink.dailyValue} / ${waterGoal.dailyGoal} ${waterGoal.goalUnits}</span>
-                    </div>`
-    progressSection.insertAdjacentHTML('beforeend', progressDisplay)
-}
-
-async function displayStreak(waterTracker, waterGoal){
-    const streakSection = document.querySelector('.streak')
-    
-    const streak = calculateStreak(waterTracker, waterGoal);
-    // console.log(streak)
-    const div = document.createElement('div')
-    const streakDisplay = document.createElement('h2')
-    streakDisplay.textContent = `${streak}`;
-    const fire = document.createElement('i')
-    fire.className = 'bi bi-fire'
-    streakSection.append(streak, fire)
-}
-
-function calculateStreak(waterTracker, waterGoal){
-    let streak=0;
-    waterTracker.forEach(tracker =>{
-        if(tracker.dailyValue >= waterGoal.dailyGoal){
-            streak++;
-        } else {
-            streak = 0;
-        }
-    })
-    return streak;
 }
 // retrieveWaterData();
