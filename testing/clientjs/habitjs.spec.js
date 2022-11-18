@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require('path');
 const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
+document.documentElement.innerHTML = html.toString();
 
 global.fetch = require('jest-fetch-mock');
 

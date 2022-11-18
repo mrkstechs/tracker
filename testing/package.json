@@ -11,7 +11,10 @@
   "license": "ISC",
   "jest": {
     "testEnvironment": "jsdom",
-    "rootDir": "../."
+    "rootDir": ".",
+    "collectCoverageFrom": [
+      "**/*.js"
+    ]
   },
   "devDependencies": {
     "jest": "^29.3.1",
