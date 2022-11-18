@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "rootDir": "../."
   },
   "devDependencies": {
     "jest": "^29.3.1",

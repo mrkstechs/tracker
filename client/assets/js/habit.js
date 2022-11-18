@@ -1,7 +1,9 @@
 window.addEventListener('load', displayHabits)
 
 const habitSection = document.querySelector('#habits')
+const logOutBtn = document.querySelector('.logout')
 
+logOutBtn.addEventListener('click', logOut);
 
 async function exPreview (user) {
     try {
@@ -242,6 +244,10 @@ async function displayWater() {
 
 function sendToWater() {
     window.location.assign('/client/water.html')
+}
+
+async function logOut(){
+    window.location.assign('/client/index.html')
 }
 
 exPreview(1)

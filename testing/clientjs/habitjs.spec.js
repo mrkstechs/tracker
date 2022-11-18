@@ -1,6 +1,7 @@
+/** @jest-environment jsdom */
 const fs = require("fs");
 const path = require('path');
-const html = fs.readFileSync(path.resolve("../client/index.html"), 'utf8');
+const html = fs.readFileSync(path.resolve("../client/homepage.html"), 'utf8');
 
 global.fetch = require('jest-fetch-mock');
 
@@ -29,7 +30,7 @@ describe("Hompeage", () => {
     })
 
     beforeEach(() => {      
-        window.document.body.innerHTML = html
+        document.documentElement.innerHTML = html.toString();
         })
 
     afterAll(() => jest.resetAllMocks())
@@ -40,25 +41,6 @@ describe("Hompeage", () => {
                expect(user).toBeTruthy();
         })
     })
-
-    // describe('Requests', () => {
-    //     test('It fetches userTrackedGoals', () => {
-
-    //     }); 
-
-    //     test('It fetches sleepData', () => {
-
-    //     });
-
-    //     test('It fetches exeData', () => {
-            
-    //     })
-        
-    //     test('It fetches waterData', () => {
-            
-    //     })
-        
-    // })
 
     describe('Relocation functions', () => {
         const {location} = window;
@@ -142,10 +124,32 @@ describe("Hompeage", () => {
                 expect(displayWater).toHaveBeenCalled
             })
         })
+    
+    })
 
+    describe('Display Functions', () => {
 
+        beforeEach(() => {      
+            document.documentElement.innerHTML = html.toString();
+            })
+
+        beforeAll(() => {
+            fetch = jest.fn(() =>
+            Promise.resolve({
+              json: () => Promise.resolve([{date: "2022-11-17", dailyValue: 5}]),
+            })
+          )
+        });
+
+        test('Correctly display sleep card', () => {
+            sleepGoal = {dailyGoal: 8}
+            user = {id: 1}
+            const habitSection = document.querySelector('#waterHabit')
+            displaySleep(user, sleepGoal)
+            const date = document.querySelector('div.sleep h4')
+            expect(habitSection).toEqual("2022-11-17")
+        })
 
 
     })
-
 })

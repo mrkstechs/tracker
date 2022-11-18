@@ -1,5 +1,9 @@
 window.addEventListener('load', createDisplay)
 
+const logOutBtn = document.querySelector('.logout')
+
+logOutBtn.addEventListener('click', logOut);
+
 async function createDisplay() {
     const { user, waterGoal, waterTracker, lastDrink } = await retrieveWaterData()
     if (!waterGoal) {displayNewGoalForm(user)} 
@@ -159,4 +163,7 @@ async function submitTracker (e) {
         console.warn(err);
     }
 }
-// retrieveWaterData();
+
+async function logOut(){
+    window.location.assign('/client/index.html')
+}// retrieveWaterData();
